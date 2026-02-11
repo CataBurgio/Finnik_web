@@ -265,30 +265,30 @@ function FeaturesSection({
         </p>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {FEATURES.map((f) => (
+          {FEATURES.map((f, idx) => (
             <div
               key={f.title}
-              className="group flex flex-col rounded-2xl border p-6 transition-colors"
+              className="group flex flex-col rounded-2xl border p-6 shadow-md backdrop-blur-sm transition-colors"
               style={{
-                background: "#070F14",
-                borderColor: "rgba(221,223,228,0.12)",
+                background: idx % 2 === 0 ? "rgba(246,247,248,0.95)" : "rgba(243,245,250,0.95)",
+                borderColor: "#DDDFE4",
               }}
             >
               <div
                 className="flex h-10 w-10 items-center justify-center rounded-xl"
-                style={{ background: "rgba(9,56,189,0.3)" }}
+                style={{ background: "rgba(9,56,189,0.12)" }}
               >
-                <f.icon size={20} style={{ color: "#FCFDFD" }} />
+                <f.icon size={20} style={{ color: "#0938BD" }} />
               </div>
               <h3
                 className="mt-4 text-lg font-semibold"
-                style={{ color: "#FCFDFD" }}
+                style={{ color: "#070F14" }}
               >
                 {f.title}
               </h3>
               <p
                 className="mt-2 flex-1 text-sm leading-relaxed"
-                style={{ color: "#DDDFE4" }}
+                style={{ color: "#103195" }}
               >
                 {f.description}
               </p>
@@ -359,24 +359,24 @@ function PlansSection() {
         </p>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {plans.map((plan) => (
+          {plans.map((plan, idx) => (
             <div
               key={plan.name}
-              className="flex flex-col rounded-2xl border p-6"
+              className="flex flex-col rounded-2xl border p-6 shadow-md backdrop-blur-sm"
               style={{
-                background: "#070F14",
+                background: idx % 2 === 0 ? "rgba(246,247,248,0.95)" : "rgba(243,245,250,0.95)",
                 borderColor: plan.highlighted
                   ? "rgba(208,115,113,0.5)"
-                  : "rgba(221,223,228,0.12)",
+                  : "#DDDFE4",
               }}
             >
-              <p className="text-sm font-medium" style={{ color: "#ADB0BB" }}>
+              <p className="text-sm font-medium" style={{ color: "#103195" }}>
                 {plan.name}
               </p>
               <div className="mt-2 flex items-baseline gap-1">
                 <span
                   className="text-3xl font-bold"
-                  style={{ color: "#FCFDFD" }}
+                  style={{ color: "#070F14" }}
                 >
                   {plan.price}
                 </span>
@@ -392,7 +392,7 @@ function PlansSection() {
                       className="mt-0.5 flex-shrink-0"
                       style={{ color: "#D07371" }}
                     />
-                    <span className="text-sm" style={{ color: "#DDDFE4" }}>
+                    <span className="text-sm" style={{ color: "#103195" }}>
                       {feat}
                     </span>
                   </li>
@@ -406,8 +406,8 @@ function PlansSection() {
                     ? { background: "#D07371", color: "#FCFDFD" }
                     : {
                         background: "transparent",
-                        color: "#FCFDFD",
-                        border: "1px solid rgba(221,223,228,0.3)",
+                        color: "#070F14",
+                        border: "1px solid #DDDFE4",
                       }
                 }
               >
@@ -422,16 +422,16 @@ function PlansSection() {
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-6">
           <div
-            className="w-full max-w-sm rounded-2xl p-6 text-center"
+            className="w-full max-w-sm rounded-2xl p-6 text-center shadow-lg"
             style={{
-              background: "#070F14",
-              border: "1px solid rgba(221,223,228,0.2)",
+              background: "#F6F7F8",
+              border: "1px solid #DDDFE4",
             }}
           >
-            <p className="text-lg font-semibold" style={{ color: "#FCFDFD" }}>
+            <p className="text-lg font-semibold" style={{ color: "#070F14" }}>
               Proximamente
             </p>
-            <p className="mt-2 text-sm" style={{ color: "#ADB0BB" }}>
+            <p className="mt-2 text-sm" style={{ color: "#103195" }}>
               Estamos terminando los ultimos detalles. Te vamos a avisar cuando este listo!
             </p>
             <button
@@ -495,10 +495,10 @@ function FAQSection() {
           {FAQ_DATA.map((item, idx) => (
             <div
               key={idx}
-              className="rounded-xl border"
+              className="rounded-xl border shadow-sm backdrop-blur-sm"
               style={{
-                background: "#070F14",
-                borderColor: "rgba(221,223,228,0.12)",
+                background: idx % 2 === 0 ? "rgba(246,247,248,0.95)" : "rgba(243,245,250,0.95)",
+                borderColor: "#DDDFE4",
               }}
             >
               <button
@@ -507,7 +507,7 @@ function FAQSection() {
               >
                 <span
                   className="text-sm font-medium"
-                  style={{ color: "#FCFDFD" }}
+                  style={{ color: "#070F14" }}
                 >
                   {item.q}
                 </span>
@@ -515,7 +515,7 @@ function FAQSection() {
                   size={18}
                   className="flex-shrink-0 transition-transform"
                   style={{
-                    color: "#ADB0BB",
+                    color: "#103195",
                     transform:
                       openIdx === idx ? "rotate(180deg)" : "rotate(0deg)",
                   }}
@@ -525,7 +525,7 @@ function FAQSection() {
                 <div className="px-5 pb-4">
                   <p
                     className="text-sm leading-relaxed"
-                    style={{ color: "#DDDFE4" }}
+                    style={{ color: "#103195" }}
                   >
                     {item.a}
                   </p>

@@ -21,18 +21,24 @@
   /* Accent */
   --finnik-coral: #D07371;
 
+  /* Light surfaces */
+  --surface: #F6F7F8;
+  --surface-2: #F3F5FA;
+  --surface-border: #DDDFE4;
+  --text-on-surface: #070F14;
+
   /* Semantic tokens */
   --background: var(--finnik-blue-main);
   --foreground: var(--finnik-white);
-  --card: var(--finnik-black);
-  --card-foreground: var(--finnik-white);
+  --card: var(--surface);
+  --card-foreground: var(--text-on-surface);
   --primary: var(--finnik-coral);
   --primary-foreground: var(--finnik-white);
   --secondary: var(--finnik-header-bg);
   --secondary-foreground: var(--finnik-black);
   --muted: var(--finnik-gray-light);
   --muted-foreground: var(--finnik-gray-mid);
-  --border: var(--finnik-gray-light);
+  --border: var(--surface-border);
   --ring: var(--finnik-coral);
   --radius: 0.75rem;
 }
