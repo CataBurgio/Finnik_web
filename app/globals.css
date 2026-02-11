@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Finnik Blue Palette */
+  --finnik-blue-main: #0938BD;
+  --finnik-blue-deep: #0931AC;
+  --finnik-blue-intense: #0730AA;
+  --finnik-blue-mid: #103195;
+  --finnik-blue-dark: #0B2572;
+
+  /* Neutrals */
+  --finnik-black: #070F14;
+  --finnik-white: #FCFDFD;
+  --finnik-white-cool: #F6F7F8;
+  --finnik-gray-light: #DDDFE4;
+  --finnik-gray-mid: #ADB0BB;
+  --finnik-header-bg: #CAD5F2;
+
+  /* Accent */
+  --finnik-coral: #D07371;
+
+  /* Semantic tokens */
+  --background: var(--finnik-blue-main);
+  --foreground: var(--finnik-white);
+  --card: var(--finnik-black);
+  --card-foreground: var(--finnik-white);
+  --primary: var(--finnik-coral);
+  --primary-foreground: var(--finnik-white);
+  --secondary: var(--finnik-header-bg);
+  --secondary-foreground: var(--finnik-black);
+  --muted: var(--finnik-gray-light);
+  --muted-foreground: var(--finnik-gray-mid);
+  --border: var(--finnik-gray-light);
+  --ring: var(--finnik-coral);
+  --radius: 0.75rem;
+}
+
+@layer base {
+  * {
+    border-color: transparent;
+  }
+
+  body {
+    background: var(--finnik-blue-dark);
+    color: var(--finnik-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Scrollbar styling for the chat */
+.chat-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.chat-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.chat-scroll::-webkit-scrollbar-thumb {
+  background: rgba(173, 176, 187, 0.3);
+  border-radius: 2px;
+}
+
+/* Smooth scroll for FAQ */
+html {
+  scroll-behavior: smooth;
+}
