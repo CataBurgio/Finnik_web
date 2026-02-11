@@ -32,16 +32,26 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(8px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
         "typing-dot": {
           "0%, 60%, 100%": { opacity: "0.3", transform: "translateY(0)" },
           "30%": { opacity: "1", transform: "translateY(-4px)" },
         },
+        "float-slow": {
+          "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
+          "50%": { transform: "translateY(-8px) rotate(1deg)" },
+        },
       },
       animation: {
         "fade-in-up": "fade-in-up 0.35s ease-out forwards",
+        "fade-in": "fade-in 0.5s ease-out forwards",
         "typing-dot-1": "typing-dot 1.2s ease-in-out infinite 0s",
         "typing-dot-2": "typing-dot 1.2s ease-in-out infinite 0.2s",
         "typing-dot-3": "typing-dot 1.2s ease-in-out infinite 0.4s",
+        "float-slow": "float-slow 6s ease-in-out infinite",
       },
     },
   },
