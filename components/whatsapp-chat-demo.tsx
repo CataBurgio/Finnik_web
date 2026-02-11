@@ -115,19 +115,19 @@ function TypingIndicator() {
     <div className="flex animate-fade-in-up justify-start px-3 pb-2">
       <div
         className="flex items-center gap-1.5 rounded-2xl rounded-tl-sm px-4 py-2.5"
-        style={{ background: "#DDDFE4" }}
+        style={{ background: "#FFFFFF" }}
       >
         <span
           className="inline-block h-2 w-2 animate-typing-dot-1 rounded-full"
-          style={{ background: "#ADB0BB" }}
+          style={{ background: "#667781" }}
         />
         <span
           className="inline-block h-2 w-2 animate-typing-dot-2 rounded-full"
-          style={{ background: "#ADB0BB" }}
+          style={{ background: "#667781" }}
         />
         <span
           className="inline-block h-2 w-2 animate-typing-dot-3 rounded-full"
-          style={{ background: "#ADB0BB" }}
+          style={{ background: "#667781" }}
         />
       </div>
     </div>
@@ -219,40 +219,40 @@ export default function WhatsAppChatDemo({
   }
 
   return (
-    <div className="flex h-full flex-col" style={{ background: "#070F14" }}>
+    <div className="flex h-full flex-col" style={{ background: "#ECE5DD" }}>
       {/* Chat header */}
       <div
         className="flex items-center gap-2 px-3 py-2"
-        style={{ background: "#CAD5F2" }}
+        style={{ background: "#0938BD" }}
       >
-        <ChevronLeft size={20} style={{ color: "#070F14" }} />
+        <ChevronLeft size={20} style={{ color: "#FCFDFD" }} />
         <div
           className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold"
-          style={{ background: "#0938BD", color: "#FCFDFD" }}
+          style={{ background: "rgba(252,253,253,0.2)", color: "#FCFDFD" }}
         >
           F
         </div>
         <div className="flex-1">
-          <p className="text-sm font-semibold" style={{ color: "#070F14" }}>
+          <p className="text-sm font-semibold" style={{ color: "#FCFDFD" }}>
             Finnik
           </p>
-          <p className="text-[10px]" style={{ color: "#070F14", opacity: 0.6 }}>
+          <p className="text-[10px]" style={{ color: "rgba(252,253,253,0.7)" }}>
             en linea
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <Video size={18} style={{ color: "#070F14" }} />
-          <Phone size={16} style={{ color: "#070F14" }} />
+          <Video size={18} style={{ color: "#FCFDFD" }} />
+          <Phone size={16} style={{ color: "#FCFDFD" }} />
         </div>
       </div>
 
       {/* E2E banner */}
       <div
         className="flex items-center justify-center gap-1.5 px-3 py-1.5"
-        style={{ background: "#F6F7F8" }}
+        style={{ background: "#FDF8E1" }}
       >
-        <Lock size={10} style={{ color: "#ADB0BB" }} />
-        <p className="text-[9px]" style={{ color: "#070F14", opacity: 0.6 }}>
+        <Lock size={10} style={{ color: "#8C8370" }} />
+        <p className="text-[9px]" style={{ color: "#5C5040" }}>
           Mensajes cifrados de extremo a extremo (demo)
         </p>
       </div>
@@ -260,8 +260,8 @@ export default function WhatsAppChatDemo({
       {/* Date separator */}
       <div className="flex justify-center py-2">
         <span
-          className="rounded-md px-3 py-0.5 text-[10px]"
-          style={{ background: "#103195", color: "#ADB0BB" }}
+          className="rounded-md px-3 py-0.5 text-[10px] shadow-sm"
+          style={{ background: "#FFFFFF", color: "#667781" }}
         >
           Hoy
         </span>
@@ -288,13 +288,13 @@ export default function WhatsAppChatDemo({
               style={
                 msg.sender === "user"
                   ? { background: "#0938BD", color: "#FCFDFD" }
-                  : { background: "#DDDFE4", color: "#070F14" }
+                  : { background: "#FFFFFF", color: "#070F14" }
               }
             >
               {msg.text}
               <span
                 className="mt-0.5 block text-right text-[9px]"
-                style={{ color: msg.sender === "user" ? "rgba(252,253,253,0.5)" : "#ADB0BB" }}
+                style={{ color: msg.sender === "user" ? "rgba(252,253,253,0.5)" : "#667781" }}
               >
                 {msg.time}
               </span>
@@ -313,9 +313,9 @@ export default function WhatsAppChatDemo({
                 onClick={() => handleQuickReply(qr)}
                 className="rounded-full border px-3 py-1.5 text-[11px] font-medium transition-colors hover:opacity-80"
                 style={{
-                  borderColor: "#DDDFE4",
-                  color: "#FCFDFD",
-                  background: "rgba(9, 56, 189, 0.4)",
+                  borderColor: "#0938BD",
+                  color: "#0938BD",
+                  background: "#FFFFFF",
                 }}
               >
                 {qr.label}
@@ -342,15 +342,15 @@ export default function WhatsAppChatDemo({
       {showComingSoon && (
         <div className="absolute inset-0 z-20 flex items-center justify-center rounded-[inherit] bg-black/60 p-6">
           <div
-            className="w-full rounded-2xl p-5 text-center"
-            style={{ background: "#070F14", border: "1px solid rgba(221,223,228,0.2)" }}
+            className="w-full rounded-2xl p-5 text-center shadow-lg"
+            style={{ background: "#FFFFFF", border: "1px solid #DDDFE4" }}
           >
-            <p className="text-sm font-semibold" style={{ color: "#FCFDFD" }}>
+            <p className="text-sm font-semibold" style={{ color: "#070F14" }}>
               Proximamente
             </p>
             <p
               className="mt-1 text-xs"
-              style={{ color: "#ADB0BB" }}
+              style={{ color: "#667781" }}
             >
               Te vamos a avisar cuando este listo!
             </p>
@@ -368,22 +368,22 @@ export default function WhatsAppChatDemo({
       {/* Input bar */}
       <div
         className="flex items-center gap-2 px-2 py-2"
-        style={{ background: "#070F14" }}
+        style={{ background: "#F0F0F0" }}
       >
         <button aria-label="Adjuntar" className="p-1">
-          <Plus size={20} style={{ color: "#ADB0BB" }} />
+          <Plus size={20} style={{ color: "#667781" }} />
         </button>
         <div
           className="flex flex-1 items-center gap-2 rounded-full px-3 py-1.5"
-          style={{ background: "#F6F7F8" }}
+          style={{ background: "#FFFFFF" }}
         >
-          <span className="flex-1 text-[12px]" style={{ color: "#ADB0BB" }}>
+          <span className="flex-1 text-[12px]" style={{ color: "#667781" }}>
             Mensaje
           </span>
-          <Camera size={16} style={{ color: "#ADB0BB" }} />
+          <Camera size={16} style={{ color: "#667781" }} />
         </div>
         <button aria-label="Audio" className="p-1">
-          <Mic size={20} style={{ color: "#ADB0BB" }} />
+          <Mic size={20} style={{ color: "#667781" }} />
         </button>
       </div>
 
@@ -393,9 +393,9 @@ export default function WhatsAppChatDemo({
           onClick={handleReset}
           className="absolute bottom-14 right-3 z-10 flex items-center gap-1 rounded-full px-2.5 py-1 text-[10px] font-medium opacity-70 transition-opacity hover:opacity-100"
           style={{
-            background: "rgba(7,15,20,0.8)",
-            color: "#ADB0BB",
-            border: "1px solid rgba(221,223,228,0.15)",
+            background: "rgba(255,255,255,0.9)",
+            color: "#667781",
+            border: "1px solid #DDDFE4",
           }}
           aria-label="Reiniciar chat"
         >
