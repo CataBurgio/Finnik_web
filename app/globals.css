@@ -72,3 +72,24 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Newspaper collage subtle animation */
+@keyframes collage-drift {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-4px) scale(1.005); }
+}
+.collage-drift {
+  animation: collage-drift 8s ease-in-out infinite;
+}
