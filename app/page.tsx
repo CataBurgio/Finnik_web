@@ -15,6 +15,10 @@ import {
   Filter,
   Sparkles,
   Send,
+  X,
+  Newspaper,
+  Clock,
+  Smartphone,
 } from "lucide-react";
 import PhoneFrame from "@/components/phone-frame";
 import WhatsAppChatDemo from "@/components/whatsapp-chat-demo";
@@ -114,11 +118,11 @@ function Navbar() {
 
         {/* CTA */}
         <a
-          href="#producto"
+          href="#planes"
           className="hidden rounded-lg px-5 py-2 text-sm font-semibold transition-opacity hover:opacity-90 md:inline-block"
           style={{ background: "#D07371", color: "#FCFDFD" }}
         >
-          Probar
+          Empezar en WhatsApp
         </a>
 
         {/* Mobile toggle */}
@@ -176,12 +180,12 @@ function Navbar() {
             </a>
           ))}
           <a
-            href="#producto"
+            href="#planes"
             onClick={() => setMobileOpen(false)}
             className="mt-2 inline-block rounded-lg px-5 py-2 text-sm font-semibold"
             style={{ background: "#D07371", color: "#FCFDFD" }}
           >
-            Probar
+            Empezar en WhatsApp
           </a>
         </div>
       )}
@@ -259,13 +263,13 @@ function Hero({
 
           {/* CTAs */}
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <button
-              onClick={() => onChatAction("am-brief")}
+            <a
+              href="#planes"
               className="rounded-xl px-7 py-3 text-sm font-semibold transition-all hover:brightness-110"
               style={{ background: "#D07371", color: "#FCFDFD" }}
             >
-              Probar demo
-            </button>
+              Empezar en WhatsApp
+            </a>
             <a
               href="#como-funciona"
               className="rounded-xl border px-7 py-3 text-sm font-semibold transition-opacity hover:opacity-80"
@@ -329,6 +333,62 @@ function Hero({
             </div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ================================================================== */
+/* SOCIAL PROOF STRIP                                                  */
+/* ================================================================== */
+
+const TRUST_CHIPS = [
+  { icon: Newspaper, label: "3 noticias clave" },
+  { icon: Clock, label: "2 minutos" },
+  { icon: Smartphone, label: "En WhatsApp (sin app)" },
+];
+
+function SocialProofStrip() {
+  return (
+    <section
+      className="relative py-12 lg:py-16"
+      style={{ background: "#F6F7F8" }}
+    >
+      <div className="mx-auto max-w-4xl px-5 text-center">
+        <h3
+          className="text-balance text-lg font-semibold tracking-tight md:text-xl"
+          style={{ color: "#070F14" }}
+        >
+          Hecho para entender el mercado sin ruido.
+        </h3>
+
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3 md:gap-4">
+          {TRUST_CHIPS.map(({ icon: Icon, label }) => (
+            <div
+              key={label}
+              className="flex items-center gap-2 rounded-full border px-4 py-2"
+              style={{
+                background: "#FCFDFD",
+                borderColor: "#DDDFE4",
+              }}
+            >
+              <Icon size={16} style={{ color: "#0938BD" }} />
+              <span
+                className="text-sm font-medium"
+                style={{ color: "#070F14" }}
+              >
+                {label}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        <p
+          className="mx-auto mt-5 max-w-md text-sm leading-relaxed"
+          style={{ color: "#5A5E6B" }}
+        >
+          Contenido curado + contexto claro. Sin newsletters interminables.
+        </p>
       </div>
     </section>
   );
@@ -501,8 +561,8 @@ function HowItWorksSection() {
             De las noticias a tu WhatsApp, en 3 pasos
           </h2>
           <p
-            className="mt-3 text-pretty text-base leading-relaxed"
-            style={{ color: "#ADB0BB" }}
+            className="mt-3 text-pretty text-base leading-relaxed md:text-lg"
+            style={{ color: "#5A5E6B" }}
           >
             Sin apps, sin newsletters interminables. Solo lo que importa,
             cuando importa.
@@ -558,7 +618,7 @@ function HowItWorksSection() {
 
               <p
                 className="mt-2 flex-1 text-sm leading-relaxed"
-                style={{ color: "#ADB0BB" }}
+                style={{ color: "#4A4E59" }}
               >
                 {step.description}
               </p>
@@ -576,7 +636,7 @@ function HowItWorksSection() {
 }
 
 /* ================================================================== */
-/* FEATURES SECTION (kept for backwards compat, now linked from steps) */
+/* FEATURES SECTION + EXAMPLE MODALS                                   */
 /* ================================================================== */
 
 const FEATURES = [
@@ -586,6 +646,22 @@ const FEATURES = [
     description:
       "Cada manana recibis un resumen con las 3 noticias que importan, que paso y que significa para vos.",
     action: "am-brief",
+    example: {
+      heading: "AM Brief - Ejemplo",
+      content: `Buenos dias! Tu brief de hoy:
+
+1. S&P Merval sube 2.1% impulsado por bancos
+   Que paso: Galicia (+3.8%) y Macro (+2.5%) lideran tras datos de depositos en alza.
+   Que significa: El mercado lee estabilidad cambiaria y apuesta al sector financiero.
+
+2. BCRA compro USD 120M, reservas en USD 28.400M
+   Que paso: Tercera rueda consecutiva con compras netas en el MULC.
+   Que significa: Refuerza la posicion del Central y reduce presion sobre el CCL.
+
+3. Inflacion de abril: 3.2% (debajo de lo esperado)
+   Que paso: El dato sorprendio al consenso que esperaba 3.8%.
+   Que significa: Buen dato para bonos CER cortos y expectativas de baja de tasas.`,
+    },
   },
   {
     icon: Radar,
@@ -593,6 +669,19 @@ const FEATURES = [
     description:
       "Monitorea bonos, acciones y CEDEARs. Te avisa si hay movimientos relevantes.",
     action: "radar",
+    example: {
+      heading: "Radar de Cartera - Ejemplo",
+      content: `Alerta de cartera:
+
+Bonos soberanos USD (AL30, GD30)
+Suba semanal: +0.8%. Riesgo pais bajo a 720 pbs. La compresion de spread beneficia la deuda larga.
+
+CEDEARs Tech
+NVDA +3.8% | MELI +2.4% | AAPL +1.1%
+CCL estable en $1.180. Rendimiento refleja suba en NYSE sin efecto cambiario.
+
+Accion sugerida: Revisar posiciones en renta fija larga si buscas capturar la compresion de spread.`,
+    },
   },
   {
     icon: GraduationCap,
@@ -600,14 +689,104 @@ const FEATURES = [
     description:
       "Aprende TIR, duration, brecha y mas. Explicaciones claras de 4 a 6 lineas, sin tecnicismos innecesarios.",
     action: "explainer",
+    example: {
+      heading: "Explainer: TIR",
+      content: `TIR (Tasa Interna de Retorno) es el rendimiento anual que obtenes si mantenes un bono hasta su vencimiento, reinvirtiendo los cupones a la misma tasa.
+
+Ejemplo practico: Si compras AL30 a USD 55 y el bono paga USD 100 al vencimiento en 2030, la TIR te dice cuanto ganas por anio. Cuanto menor el precio de entrada, mayor la TIR.
+
+Clave: Es la metrica mas usada para comparar bonos. Pero ojo, asume que podes reinvertir los cupones a la misma tasa, lo cual no siempre pasa en la practica.`,
+    },
   },
 ];
+
+function ExampleModal({
+  open,
+  onClose,
+  heading,
+  content,
+}: {
+  open: boolean;
+  onClose: () => void;
+  heading: string;
+  content: string;
+}) {
+  if (!open) return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-lg rounded-2xl p-6 shadow-xl"
+        style={{ background: "#FCFDFD", border: "1px solid #DDDFE4" }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close X */}
+        <button
+          onClick={onClose}
+          className="absolute right-4 top-4 rounded-lg p-1 transition-opacity hover:opacity-70"
+          aria-label="Cerrar"
+        >
+          <X size={18} style={{ color: "#070F14" }} />
+        </button>
+
+        {/* Heading */}
+        <div className="flex items-center gap-2">
+          <div
+            className="flex h-7 w-7 items-center justify-center rounded-full text-[10px] font-bold"
+            style={{ background: "#0938BD", color: "#FCFDFD" }}
+          >
+            F
+          </div>
+          <h3 className="text-lg font-semibold" style={{ color: "#070F14" }}>
+            {heading}
+          </h3>
+        </div>
+
+        {/* Content */}
+        <div
+          className="mt-4 max-h-[60vh] overflow-y-auto whitespace-pre-line rounded-xl p-4 text-sm leading-relaxed"
+          style={{
+            background: "#F6F7F8",
+            color: "#070F14",
+            border: "1px solid #DDDFE4",
+          }}
+        >
+          {content}
+        </div>
+
+        {/* Actions */}
+        <div className="mt-5 flex items-center gap-3">
+          <a
+            href="#planes"
+            onClick={onClose}
+            className="rounded-xl px-6 py-2.5 text-sm font-semibold transition-opacity hover:opacity-90"
+            style={{ background: "#D07371", color: "#FCFDFD" }}
+          >
+            Empezar en WhatsApp
+          </a>
+          <button
+            onClick={onClose}
+            className="rounded-xl border px-6 py-2.5 text-sm font-semibold transition-opacity hover:opacity-80"
+            style={{ borderColor: "#DDDFE4", color: "#070F14" }}
+          >
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function FeaturesSection({
   onChatAction,
 }: {
   onChatAction: (action: string) => void;
 }) {
+  const [activeExample, setActiveExample] = useState<number | null>(null);
+
   return (
     <section
       className="relative py-20"
@@ -673,16 +852,27 @@ function FeaturesSection({
                 {f.description}
               </p>
               <button
-                onClick={() => onChatAction(f.action)}
+                onClick={() => setActiveExample(idx)}
                 className="mt-5 self-start rounded-lg px-4 py-2 text-xs font-semibold transition-opacity hover:opacity-90"
                 style={{ background: "#D07371", color: "#FCFDFD" }}
               >
-                Ver en el chat
+                Ver ejemplo
               </button>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Example Modals */}
+      {FEATURES.map((f, idx) => (
+        <ExampleModal
+          key={f.title}
+          open={activeExample === idx}
+          onClose={() => setActiveExample(null)}
+          heading={f.example.heading}
+          content={f.example.content}
+        />
+      ))}
     </section>
   );
 }
@@ -717,7 +907,7 @@ function PlansSection() {
         "Explainers ilimitados",
         "Personalizacion de mercado y perfil",
       ],
-      cta: "Empezar por WhatsApp",
+      cta: "Empezar en WhatsApp",
       highlighted: true,
     },
   ];
@@ -982,6 +1172,7 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero onChatAction={handleChatAction} chatAction={chatAction} />
+      <SocialProofStrip />
       <HowItWorksSection />
       <FeaturesSection onChatAction={handleChatAction} />
       <PlansSection />
