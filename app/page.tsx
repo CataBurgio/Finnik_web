@@ -225,9 +225,11 @@ function Hero({
       ref={heroRef}
       id="producto"
       className="relative min-h-[90vh] overflow-hidden lg:min-h-[85vh]"
+      style={{
+        background:
+          "linear-gradient(180deg, #060A17 0%, #103195 50%, #060A17 100%)",
+      }}
     >
-      {/* Collage background */}
-      <NewspaperCollageBackground scrollProgress={scrollProgress} />
 
       {/* Content */}
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 px-5 pb-16 pt-12 lg:grid-cols-12 lg:gap-6 lg:pb-24 lg:pt-20">
@@ -285,13 +287,25 @@ function Hero({
         {/* === CENTER: Phone (cols 6-9) === */}
         <div className="flex items-center justify-center lg:col-span-4">
           <div
-            className="transition-transform duration-300 ease-out"
+            className="relative transition-transform duration-300 ease-out"
             style={{
               transform: `scale(${phoneScale})`,
               filter: `drop-shadow(${phoneShadow})`,
               willChange: "transform, filter",
             }}
           >
+            {/* Glow aura */}
+            <div
+              className="pointer-events-none absolute rounded-[2.5rem]"
+              style={{
+                inset: "-24px",
+                background:
+                  "radial-gradient(ellipse at center, rgba(9,56,189,0.45) 0%, rgba(16,49,149,0.25) 40%, transparent 70%)",
+                filter: "blur(50px)",
+                opacity: 0.3,
+              }}
+              aria-hidden="true"
+            />
             <PhoneFrame>
               <WhatsAppChatDemo initialAction={chatAction} />
             </PhoneFrame>
