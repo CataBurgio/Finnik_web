@@ -200,7 +200,6 @@ function Navbar() {
 const HERO_BULLETS = [
   { icon: Zap, text: "Brief diario en 1 minuto" },
   { icon: Brain, text: "Contexto + que significa" },
-  { icon: BookOpen, text: "Aprende sin humo" },
   { icon: Sliders, text: "Tu feed, a tu medida" },
 ];
 
@@ -251,14 +250,14 @@ function Hero({
             className="mt-6 text-balance text-3xl font-extrabold leading-[1.1] tracking-tight sm:text-4xl md:text-5xl lg:text-[3.2rem]"
             style={{ color: "#FCFDFD" }}
           >
-            Tu curaduria financiera, directo en WhatsApp.
+            Curaduria financiera, directo en WhatsApp.
           </h1>
 
           <p
             className="mt-4 max-w-md text-pretty text-base leading-relaxed md:text-lg"
             style={{ color: "#DDDFE4" }}
           >
-            Noticias clave, contexto y aprendizaje en 2 minutos. Sin ruido.
+            Solo lo que importa, explicado simple.
           </p>
 
           {/* CTAs */}
@@ -403,7 +402,7 @@ const STEPS = [
     number: "01",
     title: "Elegis un tema",
     description:
-      "Personalizas tu feed: mercado argentino, global, bonos, acciones, cripto. Vos elegis que te interesa.",
+      "Personalizas tu feed: mercados de interes. Vos elegis lo que te interesa.",
     icon: Sliders,
     visual: "chips",
   },
@@ -429,7 +428,7 @@ function StepVisual({ visual }: { visual: string }) {
   if (visual === "chips") {
     return (
       <div className="flex flex-wrap gap-2">
-        {["Bonos", "Acciones", "CEDEARs", "Cripto", "Argentina", "Global"].map(
+        {["EEUU", "Argentina", "Latam", "Europa", "Cripto"].map(
           (chip) => (
             <span
               key={chip}
@@ -890,7 +889,7 @@ function PlansSection() {
       price: "$0",
       period: "/mes",
       features: [
-        "1 brief semanal",
+        "5 briefs semanales",
         "Acceso a la demo interactiva",
         "Explainers basicos",
       ],
@@ -899,7 +898,7 @@ function PlansSection() {
     },
     {
       name: "Pro",
-      price: "$4.99",
+      price: "$5.000",
       period: "/mes",
       features: [
         "Brief diario AM & PM",
