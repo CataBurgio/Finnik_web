@@ -791,7 +791,7 @@ function FeaturesSection({
       className="relative py-20"
       style={{
         background:
-          "linear-gradient(180deg, #0B2572 0%, #103195 50%, #0B2572 100%)",
+          "linear-gradient(180deg, #060A17 0%, #103195 50%, #060A17 100%)",
       }}
     >
       <div className="mx-auto max-w-6xl px-5">
@@ -912,7 +912,7 @@ function PlansSection() {
   ];
 
   return (
-    <section id="planes" className="relative py-20" style={{ background: "#0B2572" }}>
+    <section id="planes" className="relative py-20" style={{ background: "#060A17" }}>
       <div className="mx-auto max-w-3xl px-5">
         <h2
           className="text-center text-3xl font-bold tracking-tight md:text-4xl"
@@ -1055,7 +1055,7 @@ function FAQSection() {
       id="faq"
       className="relative py-20"
       style={{
-        background: "linear-gradient(180deg, #0B2572 0%, #103195 100%)",
+        background: "linear-gradient(180deg, #060A17 0%, #103195 100%)",
       }}
     >
       <div className="mx-auto max-w-2xl px-5">
@@ -1123,7 +1123,7 @@ function FAQSection() {
 
 function Footer() {
   return (
-    <footer className="py-10" style={{ background: "#0B2572" }}>
+    <footer className="py-10" style={{ background: "#060A17" }}>
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-5 md:flex-row md:justify-between">
         <div className="flex items-center gap-2">
           <div

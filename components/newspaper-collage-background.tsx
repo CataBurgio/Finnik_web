@@ -129,7 +129,7 @@ export default function NewspaperCollageBackground({
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(160deg, rgba(9,56,189,0.92) 0%, rgba(9,49,172,0.90) 30%, rgba(7,48,170,0.88) 60%, rgba(11,37,114,0.95) 100%)",
+            "linear-gradient(160deg, rgba(9,56,189,0.92) 0%, rgba(9,49,172,0.90) 30%, rgba(7,48,170,0.88) 60%, rgba(6,10,23,0.95) 100%)",
         }}
       />
 
