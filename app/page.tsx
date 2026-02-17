@@ -76,12 +76,12 @@ function Navbar() {
       className="sticky top-0 z-50 transition-all duration-300"
       style={{
         background: scrolled
-          ? "rgba(246,247,248,0.85)"
-          : "rgba(246,247,248,0.95)",
+          ? "rgba(6,10,23,0.75)"
+          : "transparent",
         backdropFilter: scrolled ? "blur(16px) saturate(1.4)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(16px) saturate(1.4)" : "none",
         borderBottom: scrolled
-          ? "1px solid rgba(221,223,228,0.5)"
+          ? "1px solid rgba(255,255,255,0.08)"
           : "1px solid transparent",
       }}
     >
@@ -96,7 +96,7 @@ function Navbar() {
           </div>
           <span
             className="text-lg font-bold tracking-tight"
-            style={{ color: "#070F14" }}
+            style={{ color: "#FCFDFD" }}
           >
             FINNIK
           </span>
@@ -109,7 +109,7 @@ function Navbar() {
               key={link}
               href={`#${link.toLowerCase().replace(/ /g, "-")}`}
               className="text-sm font-medium transition-colors hover:opacity-70"
-              style={{ color: "#070F14" }}
+              style={{ color: "rgba(252,253,253,0.8)" }}
             >
               {link}
             </a>
@@ -134,7 +134,7 @@ function Navbar() {
           <span
             className="block h-0.5 w-5 transition-transform"
             style={{
-              background: "#070F14",
+              background: "#FCFDFD",
               transform: mobileOpen
                 ? "rotate(45deg) translate(2px, 2px)"
                 : "none",
@@ -143,14 +143,14 @@ function Navbar() {
           <span
             className="block h-0.5 w-5 transition-opacity"
             style={{
-              background: "#070F14",
+              background: "#FCFDFD",
               opacity: mobileOpen ? 0 : 1,
             }}
           />
           <span
             className="block h-0.5 w-5 transition-transform"
             style={{
-              background: "#070F14",
+              background: "#FCFDFD",
               transform: mobileOpen
                 ? "rotate(-45deg) translate(2px, -2px)"
                 : "none",
@@ -164,8 +164,10 @@ function Navbar() {
         <div
           className="border-t px-5 pb-4 pt-2 md:hidden"
           style={{
-            background: "rgba(246,247,248,0.98)",
-            borderColor: "rgba(221,223,228,0.4)",
+            background: "rgba(6,10,23,0.92)",
+            backdropFilter: "blur(16px)",
+            WebkitBackdropFilter: "blur(16px)",
+            borderColor: "rgba(255,255,255,0.08)",
           }}
         >
           {["Producto", "Como funciona", "Planes", "FAQ"].map((link) => (
@@ -174,7 +176,7 @@ function Navbar() {
               href={`#${link.toLowerCase().replace(/ /g, "-")}`}
               onClick={() => setMobileOpen(false)}
               className="block py-2.5 text-sm font-medium"
-              style={{ color: "#070F14" }}
+              style={{ color: "rgba(252,253,253,0.8)" }}
             >
               {link}
             </a>
