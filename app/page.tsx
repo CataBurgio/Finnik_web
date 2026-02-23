@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Zap,
   Brain,
@@ -8,12 +8,10 @@ import {
   Sliders,
   Check,
   ChevronDown,
-  MessageCircle,
   TrendingUp,
   Radar,
   GraduationCap,
   Filter,
-  Sparkles,
   Send,
 } from "lucide-react";
 import PhoneFrame from "@/components/phone-frame";
@@ -230,21 +228,8 @@ function Hero({
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 px-5 pb-16 pt-12 lg:grid-cols-12 lg:gap-6 lg:pb-24 lg:pt-20">
         {/* === LEFT: Promise (cols 1-5) === */}
         <div className="lg:col-span-5">
-          {/* Badge */}
-          <span
-            className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium"
-            style={{
-              borderColor: "rgba(221,223,228,0.3)",
-              color: "#FCFDFD",
-              background: "rgba(252,253,253,0.06)",
-            }}
-          >
-            <MessageCircle size={12} />
-            Bot de WhatsApp
-          </span>
-
           <h1
-            className="mt-6 text-balance text-3xl font-extrabold leading-[1.1] tracking-tight sm:text-4xl md:text-5xl lg:text-[3.2rem]"
+            className="text-balance text-3xl font-extrabold leading-[1.1] tracking-tight sm:text-4xl md:text-5xl lg:text-[3.2rem]"
             style={{ color: "#FCFDFD" }}
           >
             Tu curaduria financiera, directo en WhatsApp.
@@ -254,24 +239,32 @@ function Hero({
             className="mt-4 max-w-md text-pretty text-base leading-relaxed md:text-lg"
             style={{ color: "#DDDFE4" }}
           >
-            Noticias clave, contexto y aprendizaje en 2 minutos. Sin ruido.
+            Sin apps, ni newsletters interminables. Solo lo que importa, cuando importa.
           </p>
 
           {/* CTAs */}
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <button
               onClick={() => onChatAction("am-brief")}
-              className="rounded-xl px-7 py-3 text-sm font-semibold transition-all hover:brightness-110"
-              style={{ background: "#D07371", color: "#FCFDFD" }}
+              className="rounded-xl px-7 py-3 text-sm font-semibold transition-all hover:brightness-110 active:translate-y-[1px]"
+              style={{
+                background: "#D07371",
+                color: "#FCFDFD",
+                boxShadow:
+                  "0 4px 12px rgba(208,115,113,0.4), 0 2px 4px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.2)",
+              }}
             >
               Probar demo
             </button>
             <a
               href="#como-funciona"
-              className="rounded-xl border px-7 py-3 text-sm font-semibold transition-opacity hover:opacity-80"
+              className="rounded-xl border px-7 py-3 text-sm font-semibold transition-all hover:opacity-90 active:translate-y-[1px]"
               style={{
                 borderColor: "rgba(221,223,228,0.35)",
                 color: "#FCFDFD",
+                boxShadow:
+                  "0 4px 12px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.1)",
+                background: "rgba(252,253,253,0.06)",
               }}
             >
               Ver como funciona
@@ -500,13 +493,6 @@ function HowItWorksSection() {
           >
             De las noticias a tu WhatsApp, en 3 pasos
           </h2>
-          <p
-            className="mt-3 text-pretty text-base leading-relaxed"
-            style={{ color: "#ADB0BB" }}
-          >
-            Sin apps, sin newsletters interminables. Solo lo que importa,
-            cuando importa.
-          </p>
         </div>
 
         {/* Steps */}
@@ -929,6 +915,124 @@ function FAQSection() {
 }
 
 /* ================================================================== */
+/* QUIENES SOMOS                                                       */
+/* ================================================================== */
+
+const TEAM = [
+  {
+    name: "Julian Fernandez Sinisgalli",
+    role: "Licenciado en Economia",
+    university: "Universidad Torcuato Di Tella",
+    linkedin: "https://www.linkedin.com/in/julianfernandezsinisgalli/",
+  },
+  {
+    name: "Catalina Burgio Iraola",
+    role: "Licenciada en Administracion de Empresas",
+    university: "Universidad Torcuato Di Tella",
+    linkedin: "https://www.linkedin.com/in/catalina-burgio-iraola/",
+  },
+];
+
+function QuienesSomosSection() {
+  return (
+    <section
+      id="quienes-somos"
+      className="relative py-20 lg:py-28"
+      style={{ background: "#F6F7F8" }}
+    >
+      <div className="mx-auto max-w-4xl px-5">
+        <div className="mx-auto max-w-xl text-center">
+          <span
+            className="inline-block rounded-full px-3 py-1 text-xs font-medium"
+            style={{
+              background: "rgba(9,56,189,0.08)",
+              color: "#0938BD",
+            }}
+          >
+            Equipo
+          </span>
+          <h2
+            className="mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl"
+            style={{ color: "#070F14" }}
+          >
+            Quienes Somos
+          </h2>
+          <p
+            className="mt-3 text-pretty text-base leading-relaxed"
+            style={{ color: "#ADB0BB" }}
+          >
+            Tus noticias financieras curadas por economistas de verdad.
+          </p>
+        </div>
+
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
+          {TEAM.map((member) => (
+            <div
+              key={member.name}
+              className="flex flex-col items-center rounded-2xl border p-8 text-center"
+              style={{
+                background: "#FCFDFD",
+                borderColor: "#DDDFE4",
+                boxShadow: "0 4px 24px rgba(9,56,189,0.06)",
+              }}
+            >
+              {/* Avatar placeholder */}
+              <div
+                className="flex h-16 w-16 items-center justify-center rounded-full text-xl font-bold"
+                style={{ background: "rgba(9,56,189,0.08)", color: "#0938BD" }}
+              >
+                {member.name
+                  .split(" ")
+                  .slice(0, 2)
+                  .map((n) => n[0])
+                  .join("")}
+              </div>
+              <h3
+                className="mt-4 text-lg font-semibold"
+                style={{ color: "#070F14" }}
+              >
+                {member.name}
+              </h3>
+              <p
+                className="mt-1 text-sm leading-relaxed"
+                style={{ color: "#103195" }}
+              >
+                {member.role}
+              </p>
+              <p
+                className="text-sm leading-relaxed"
+                style={{ color: "#ADB0BB" }}
+              >
+                {member.university}
+              </p>
+              <a
+                href={member.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-xs font-semibold transition-opacity hover:opacity-80"
+                style={{ background: "rgba(9,56,189,0.08)", color: "#0938BD" }}
+                aria-label={`LinkedIn de ${member.name}`}
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+                LinkedIn
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ================================================================== */
 /* FOOTER                                                              */
 /* ================================================================== */
 
@@ -986,6 +1090,7 @@ export default function Home() {
       <FeaturesSection onChatAction={handleChatAction} />
       <PlansSection />
       <FAQSection />
+      <QuienesSomosSection />
       <Footer />
     </main>
   );
