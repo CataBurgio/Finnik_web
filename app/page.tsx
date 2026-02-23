@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import {
   Zap,
   Brain,
-  BookOpen,
   Sliders,
   Check,
   ChevronDown,
@@ -98,7 +97,7 @@ function Navbar() {
 
         {/* Desktop links */}
         <div className="hidden items-center gap-8 md:flex">
-          {["Producto", "Como funciona", "Planes", "FAQ"].map((link) => (
+          {["Producto", "Como funciona", "Planes", "FAQ", "Quienes Somos"].map((link) => (
             <a
               key={link}
               href={`#${link.toLowerCase().replace(/ /g, "-")}`}
@@ -162,7 +161,7 @@ function Navbar() {
             borderColor: "rgba(221,223,228,0.4)",
           }}
         >
-          {["Producto", "Como funciona", "Planes", "FAQ"].map((link) => (
+          {["Producto", "Como funciona", "Planes", "FAQ", "Quienes Somos"].map((link) => (
             <a
               key={link}
               href={`#${link.toLowerCase().replace(/ /g, "-")}`}
@@ -191,12 +190,11 @@ function Navbar() {
 /* HERO BULLETS (right column)                                         */
 /* ================================================================== */
 
-const HERO_BULLETS = [
+  const HERO_BULLETS = [
   { icon: Zap, text: "Brief diario en 1 minuto" },
   { icon: Brain, text: "Contexto + que significa" },
-  { icon: BookOpen, text: "Aprende sin humo" },
   { icon: Sliders, text: "Tu feed, a tu medida" },
-];
+  ];
 
 /* ================================================================== */
 /* HERO (3-column grid with collage bg + squish scroll)                */
