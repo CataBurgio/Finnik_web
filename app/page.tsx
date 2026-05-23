@@ -80,18 +80,30 @@ function Navbar() {
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2.5">
-          <div
-            className="flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold"
-            style={{ background: "#0938BD", color: "#FCFDFD" }}
+        <a href="#" className="flex items-center gap-2">
+          {/* Fi symbol */}
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 40 40"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            F
-          </div>
+            {/* F letter */}
+            <path
+              d="M8 8V32H12V22H22V18H12V12H24V8H8Z"
+              fill="#0938BD"
+            />
+            {/* i stem */}
+            <rect x="26" y="16" width="4" height="16" fill="#0938BD" />
+            {/* i dot (coral) */}
+            <circle cx="28" cy="10" r="3" fill="#D07371" />
+          </svg>
           <span
-            className="text-lg font-bold tracking-tight"
-            style={{ color: "#070F14" }}
+            className="text-lg font-semibold tracking-tight"
+            style={{ color: "#0938BD" }}
           >
-            FINNIK
+            Finnik
           </span>
         </a>
 
