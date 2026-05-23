@@ -80,18 +80,30 @@ function Navbar() {
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2.5">
-          <div
-            className="flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold"
-            style={{ background: "#0938BD", color: "#FCFDFD" }}
+        <a href="#" className="flex items-center gap-2">
+          {/* Fi symbol */}
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 40 40"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            F
-          </div>
+            {/* F letter */}
+            <path
+              d="M8 8V32H12V22H22V18H12V12H24V8H8Z"
+              fill="#0938BD"
+            />
+            {/* i stem */}
+            <rect x="26" y="16" width="4" height="16" fill="#0938BD" />
+            {/* i dot (coral) */}
+            <circle cx="28" cy="10" r="3" fill="#D07371" />
+          </svg>
           <span
-            className="text-lg font-bold tracking-tight"
-            style={{ color: "#070F14" }}
+            className="text-lg font-semibold tracking-tight"
+            style={{ color: "#0938BD" }}
           >
-            FINNIK
+            Finnik
           </span>
         </a>
 
@@ -678,110 +690,200 @@ function FeaturesSection({
 function PlansSection() {
   const [showModal, setShowModal] = useState(false);
 
-  const plans = [
-    {
-      name: "Gratis",
-      price: "$0",
-      period: "/mes",
-      features: [
-        "1 brief semanal",
-        "Acceso a la demo interactiva",
-        "Explainers basicos",
-      ],
-      cta: "Empezar gratis",
-      highlighted: false,
-    },
-    {
-      name: "Pro",
-      price: "$4.99",
-      period: "/mes",
-      features: [
-        "Brief diario AM & PM",
-        "Radar de cartera completo",
-        "Explainers ilimitados",
-        "Personalizacion de mercado y perfil",
-      ],
-      cta: "Empezar por WhatsApp",
-      highlighted: true,
-    },
+  const freePlanFeatures = [
+    "Resumen corto de 1 noticia por semana",
+    "Aviso de upgrade al final del resumen",
+    "5 preguntas libres por dia",
+    '1 "Contame mas" por dia',
+    "Sin alertas intra-dia",
+  ];
+
+  const proPlanFeatures = [
+    "Resumen completo y personalizado con 2 noticias",
+    "50 preguntas libres por dia",
+    '"Contame mas" ilimitado',
+    "Hasta 2 alertas intra-dia segun industria",
+    "Seguimiento de cartera personal de hasta 15 tickers",
+    "Insights nocturnos de cartera",
+    "Soporte prioritario",
   ];
 
   return (
-    <section id="planes" className="relative py-20" style={{ background: "#0B2572" }}>
-      <div className="mx-auto max-w-3xl px-5">
-        <h2
-          className="text-center text-3xl font-bold tracking-tight md:text-4xl"
-          style={{ color: "#FCFDFD" }}
-        >
-          Planes
-        </h2>
-        <p
-          className="mx-auto mt-3 max-w-md text-center text-sm leading-relaxed"
-          style={{ color: "#DDDFE4" }}
-        >
-          Empeza gratis, escala cuando quieras.
-        </p>
+    <section id="planes" className="relative py-20 lg:py-28" style={{ background: "#0B2572" }}>
+      <div className="mx-auto max-w-4xl px-5">
+        {/* Header */}
+        <div className="mx-auto max-w-2xl text-center">
+          <h2
+            className="text-balance text-3xl font-bold tracking-tight md:text-4xl"
+            style={{ color: "#FCFDFD" }}
+          >
+            Planes
+          </h2>
+          <p
+            className="mt-4 text-pretty text-base leading-relaxed"
+            style={{ color: "#DDDFE4" }}
+          >
+            {"Elegi como queres seguir el mercado: gratis para empezar, Pro para personalizar."}
+          </p>
+        </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {plans.map((plan, idx) => (
-            <div
-              key={plan.name}
-              className="flex flex-col rounded-2xl border p-6 shadow-md backdrop-blur-sm"
+        {/* Plans grid */}
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
+          {/* FREE PLAN */}
+          <div
+            className="relative flex flex-col rounded-2xl border p-7 shadow-lg"
+            style={{
+              background: "#FCFDFD",
+              borderColor: "#DDDFE4",
+            }}
+          >
+            {/* Badge */}
+            <span
+              className="absolute -top-3 left-6 rounded-full px-3 py-1 text-xs font-medium"
               style={{
-                background:
-                  idx % 2 === 0
-                    ? "rgba(246,247,248,0.95)"
-                    : "rgba(243,245,250,0.95)",
-                borderColor: plan.highlighted
-                  ? "rgba(208,115,113,0.5)"
-                  : "#DDDFE4",
+                background: "rgba(9,56,189,0.1)",
+                color: "#0938BD",
               }}
             >
-              <p className="text-sm font-medium" style={{ color: "#103195" }}>
-                {plan.name}
-              </p>
-              <div className="mt-2 flex items-baseline gap-1">
-                <span
-                  className="text-3xl font-bold"
-                  style={{ color: "#070F14" }}
-                >
-                  {plan.price}
-                </span>
-                <span className="text-sm" style={{ color: "#ADB0BB" }}>
-                  {plan.period}
-                </span>
-              </div>
-              <ul className="mt-6 flex flex-1 flex-col gap-3">
-                {plan.features.map((feat) => (
-                  <li key={feat} className="flex items-start gap-2">
-                    <Check
-                      size={16}
-                      className="mt-0.5 flex-shrink-0"
-                      style={{ color: "#D07371" }}
-                    />
-                    <span className="text-sm" style={{ color: "#103195" }}>
-                      {feat}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <button
-                onClick={() => setShowModal(true)}
-                className="mt-6 w-full rounded-xl py-3 text-sm font-semibold transition-opacity hover:opacity-90"
-                style={
-                  plan.highlighted
-                    ? { background: "#D07371", color: "#FCFDFD" }
-                    : {
-                        background: "transparent",
-                        color: "#070F14",
-                        border: "1px solid #DDDFE4",
-                      }
-                }
+              Por defecto
+            </span>
+
+            {/* Plan name */}
+            <h3
+              className="mt-2 text-xl font-bold"
+              style={{ color: "#070F14" }}
+            >
+              Free
+            </h3>
+
+            {/* Price */}
+            <div className="mt-3 flex items-baseline gap-1">
+              <span
+                className="text-4xl font-bold tracking-tight"
+                style={{ color: "#070F14" }}
               >
-                {plan.cta}
-              </button>
+                $0
+              </span>
+              <span className="text-sm font-medium" style={{ color: "#ADB0BB" }}>
+                / mes
+              </span>
             </div>
-          ))}
+
+            {/* Description */}
+            <p
+              className="mt-4 text-sm leading-relaxed"
+              style={{ color: "#ADB0BB" }}
+            >
+              {"Proba Finnik sin costo y entende lo importante sin perder tiempo."}
+            </p>
+
+            {/* Features */}
+            <ul className="mt-6 flex flex-1 flex-col gap-3">
+              {freePlanFeatures.map((feat) => (
+                <li key={feat} className="flex items-start gap-2.5">
+                  <Check
+                    size={16}
+                    className="mt-0.5 flex-shrink-0"
+                    style={{ color: "#0938BD" }}
+                  />
+                  <span className="text-sm leading-relaxed" style={{ color: "#103195" }}>
+                    {feat}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            {/* CTA */}
+            <button
+              onClick={() => setShowModal(true)}
+              className="mt-8 w-full rounded-xl py-3.5 text-sm font-semibold transition-all hover:opacity-90 active:translate-y-[1px]"
+              style={{
+                background: "transparent",
+                color: "#070F14",
+                border: "1.5px solid #DDDFE4",
+              }}
+            >
+              Empezar gratis
+            </button>
+          </div>
+
+          {/* PRO PLAN */}
+          <div
+            className="relative flex flex-col rounded-2xl border-2 p-7 shadow-xl"
+            style={{
+              background: "#FCFDFD",
+              borderColor: "#D07371",
+            }}
+          >
+            {/* Badge */}
+            <span
+              className="absolute -top-3 left-6 rounded-full px-3 py-1 text-xs font-semibold"
+              style={{
+                background: "#D07371",
+                color: "#FCFDFD",
+              }}
+            >
+              Mas completo
+            </span>
+
+            {/* Plan name */}
+            <h3
+              className="mt-2 text-xl font-bold"
+              style={{ color: "#070F14" }}
+            >
+              Pro
+            </h3>
+
+            {/* Price */}
+            <div className="mt-3 flex items-baseline gap-1">
+              <span
+                className="text-4xl font-bold tracking-tight"
+                style={{ color: "#070F14" }}
+              >
+                $3.500
+              </span>
+              <span className="text-sm font-medium" style={{ color: "#ADB0BB" }}>
+                ARS / mes
+              </span>
+            </div>
+
+            {/* Description */}
+            <p
+              className="mt-4 text-sm leading-relaxed"
+              style={{ color: "#ADB0BB" }}
+            >
+              {"Recibi analisis personalizado, seguimiento de cartera y alertas pensadas para tu perfil."}
+            </p>
+
+            {/* Features */}
+            <ul className="mt-6 flex flex-1 flex-col gap-3">
+              {proPlanFeatures.map((feat) => (
+                <li key={feat} className="flex items-start gap-2.5">
+                  <Check
+                    size={16}
+                    className="mt-0.5 flex-shrink-0"
+                    style={{ color: "#D07371" }}
+                  />
+                  <span className="text-sm leading-relaxed" style={{ color: "#103195" }}>
+                    {feat}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            {/* CTA */}
+            <button
+              onClick={() => setShowModal(true)}
+              className="mt-8 w-full rounded-xl py-3.5 text-sm font-semibold transition-all hover:brightness-110 active:translate-y-[1px]"
+              style={{
+                background: "#D07371",
+                color: "#FCFDFD",
+                boxShadow: "0 4px 12px rgba(208,115,113,0.3)",
+              }}
+            >
+              Empezar por WhatsApp
+            </button>
+          </div>
         </div>
       </div>
 
