@@ -687,8 +687,140 @@ function FeaturesSection({
 /* PLANS                                                               */
 /* ================================================================== */
 
+type WaitlistState = "idle" | "loading" | "success" | "error";
+
+function WaitlistModal({
+  onClose,
+  planLabel,
+}: {
+  onClose: () => void;
+  planLabel: string;
+}) {
+  const [nombre, setNombre] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
+  const [state, setState] = useState<WaitlistState>("idle");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setState("loading");
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nombre, whatsapp }),
+      });
+      if (!res.ok) throw new Error();
+      setState("success");
+    } catch {
+      setState("error");
+    }
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-6">
+      <div
+        className="w-full max-w-sm rounded-2xl p-6 shadow-lg"
+        style={{ background: "#F6F7F8", border: "1px solid #DDDFE4" }}
+      >
+        {state === "success" ? (
+          <div className="text-center">
+            <div
+              className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full"
+              style={{ background: "rgba(9,56,189,0.1)" }}
+            >
+              <Check size={22} style={{ color: "#0938BD" }} />
+            </div>
+            <p className="text-lg font-semibold" style={{ color: "#070F14" }}>
+              ¡Ya estás en lista!
+            </p>
+            <p className="mt-2 text-sm" style={{ color: "#103195" }}>
+              Te avisamos por WhatsApp cuando Finnik esté listo.
+            </p>
+            <button
+              onClick={onClose}
+              className="mt-5 rounded-lg px-6 py-2.5 text-sm font-medium transition-opacity hover:opacity-90"
+              style={{ background: "#D07371", color: "#FCFDFD" }}
+            >
+              Cerrar
+            </button>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <p className="text-lg font-semibold" style={{ color: "#070F14" }}>
+              Anotate en la lista de espera
+            </p>
+            <p className="mt-1 text-sm" style={{ color: "#ADB0BB" }}>
+              Plan {planLabel} — te avisamos cuando esté disponible.
+            </p>
+
+            <div className="mt-5 flex flex-col gap-3">
+              <input
+                type="text"
+                placeholder="Tu nombre"
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
+                required
+                className="w-full rounded-xl border px-4 py-3 text-sm outline-none transition-all focus:border-blue-400"
+                style={{
+                  borderColor: "#DDDFE4",
+                  color: "#070F14",
+                  background: "#FCFDFD",
+                }}
+              />
+              <input
+                type="tel"
+                placeholder="WhatsApp (ej: +54 9 11 1234-5678)"
+                value={whatsapp}
+                onChange={(e) => setWhatsapp(e.target.value)}
+                required
+                className="w-full rounded-xl border px-4 py-3 text-sm outline-none transition-all focus:border-blue-400"
+                style={{
+                  borderColor: "#DDDFE4",
+                  color: "#070F14",
+                  background: "#FCFDFD",
+                }}
+              />
+            </div>
+
+            {state === "error" && (
+              <p className="mt-2 text-xs" style={{ color: "#D07371" }}>
+                Algo salió mal. Intentá de nuevo.
+              </p>
+            )}
+
+            <div className="mt-5 flex gap-3">
+              <button
+                type="button"
+                onClick={onClose}
+                className="flex-1 rounded-xl py-3 text-sm font-medium transition-opacity hover:opacity-70"
+                style={{ border: "1.5px solid #DDDFE4", color: "#070F14" }}
+              >
+                Cancelar
+              </button>
+              <button
+                type="submit"
+                disabled={state === "loading"}
+                className="flex-1 rounded-xl py-3 text-sm font-semibold transition-all hover:brightness-110 disabled:opacity-60"
+                style={{ background: "#D07371", color: "#FCFDFD" }}
+              >
+                {state === "loading" ? "Enviando..." : "Anotarme"}
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function PlansSection() {
   const [showModal, setShowModal] = useState(false);
+  const [planLabel, setPlanLabel] = useState("");
+
+  function openModal(label: string) {
+    setPlanLabel(label);
+    setShowModal(true);
+  }
 
   const freePlanFeatures = [
     "Resumen corto de 1 noticia por semana",
@@ -795,7 +927,7 @@ function PlansSection() {
 
             {/* CTA */}
             <button
-              onClick={() => setShowModal(true)}
+              onClick={() => openModal("Free")}
               className="mt-8 w-full rounded-xl py-3.5 text-sm font-semibold transition-all hover:opacity-90 active:translate-y-[1px]"
               style={{
                 background: "transparent",
@@ -873,7 +1005,7 @@ function PlansSection() {
 
             {/* CTA */}
             <button
-              onClick={() => setShowModal(true)}
+              onClick={() => openModal("Pro")}
               className="mt-8 w-full rounded-xl py-3.5 text-sm font-semibold transition-all hover:brightness-110 active:translate-y-[1px]"
               style={{
                 background: "#D07371",
@@ -887,35 +1019,8 @@ function PlansSection() {
         </div>
       </div>
 
-      {/* Coming soon modal */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-6">
-          <div
-            className="w-full max-w-sm rounded-2xl p-6 text-center shadow-lg"
-            style={{
-              background: "#F6F7F8",
-              border: "1px solid #DDDFE4",
-            }}
-          >
-            <p
-              className="text-lg font-semibold"
-              style={{ color: "#070F14" }}
-            >
-              Proximamente
-            </p>
-            <p className="mt-2 text-sm" style={{ color: "#103195" }}>
-              Estamos terminando los ultimos detalles. Te vamos a avisar
-              cuando este listo!
-            </p>
-            <button
-              onClick={() => setShowModal(false)}
-              className="mt-5 rounded-lg px-6 py-2.5 text-sm font-medium transition-opacity hover:opacity-90"
-              style={{ background: "#D07371", color: "#FCFDFD" }}
-            >
-              Cerrar
-            </button>
-          </div>
-        </div>
+        <WaitlistModal planLabel={planLabel} onClose={() => setShowModal(false)} />
       )}
     </section>
   );
