@@ -123,11 +123,11 @@ function Navbar() {
 
         {/* CTA */}
         <a
-          href="#producto"
+          href="#planes"
           className="hidden rounded-lg px-5 py-2 text-sm font-semibold transition-opacity hover:opacity-90 md:inline-block"
           style={{ background: "#D07371", color: "#FCFDFD" }}
         >
-          Probar
+          Anotarme
         </a>
 
         {/* Mobile toggle */}
@@ -185,12 +185,12 @@ function Navbar() {
             </a>
           ))}
           <a
-            href="#producto"
+            href="#planes"
             onClick={() => setMobileOpen(false)}
             className="mt-2 inline-block rounded-lg px-5 py-2 text-sm font-semibold"
             style={{ background: "#D07371", color: "#FCFDFD" }}
           >
-            Probar
+            Anotarme
           </a>
         </div>
       )}
@@ -1032,20 +1032,32 @@ function PlansSection() {
 
 const FAQ_DATA = [
   {
-    q: "Es asesoramiento financiero?",
-    a: "No. Finnik es un servicio de curaduria informativa. No damos recomendaciones de inversion. Siempre consulta con un asesor financiero antes de tomar decisiones.",
+    q: "¿Es asesoramiento financiero?",
+    a: "No. Finnik es un servicio de curaduría informativa. No damos recomendaciones de inversión. Siempre consultá con un asesor financiero antes de tomar decisiones.",
   },
   {
-    q: "Que tan largo es el brief?",
+    q: "¿Qué tan largo es el brief?",
     a: "El brief matutino se lee en 1 a 2 minutos. Priorizamos densidad informativa: 3 noticias clave con contexto, sin relleno.",
   },
   {
-    q: "Puedo elegir Argentina o Global?",
-    a: "Si. Podes personalizar tu brief para mercado argentino, global o mixto. Tambien elegis tu perfil de riesgo y el formato preferido.",
+    q: "¿Puedo elegir Argentina o Global?",
+    a: "Sí. Podés personalizar tu brief para mercado argentino, global o mixto. También elegís tu perfil de riesgo y el formato preferido.",
   },
   {
-    q: "Como recibo el contenido?",
-    a: "Directamente en WhatsApp. Te mandamos un mensaje cada manana con tu brief personalizado. Tambien podes pedir informacion on-demand escribiendole al bot.",
+    q: "¿Cómo recibo el contenido?",
+    a: "Directamente en WhatsApp. Te mandamos un mensaje cada mañana con tu brief personalizado. También podés pedir información on-demand escribiéndole al bot.",
+  },
+  {
+    q: "¿Puedo cancelar cuando quiero?",
+    a: "Sí, podés cancelar en cualquier momento sin costo. El plan Free no tiene vencimiento y el Pro se puede dar de baja antes de la próxima renovación mensual.",
+  },
+  {
+    q: "¿Qué fuentes usan?",
+    a: "Analizamos medios financieros locales e internacionales, datos de mercado en tiempo real y fuentes oficiales. Nuestro equipo de economistas valida la relevancia de cada noticia antes de que llegue a tu WhatsApp.",
+  },
+  {
+    q: "¿Mis datos están seguros?",
+    a: "Sí. Solo guardamos tu nombre y número de WhatsApp para enviarte el contenido. No compartimos tu información con terceros ni la usamos con fines comerciales.",
   },
 ];
 
