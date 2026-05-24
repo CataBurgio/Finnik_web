@@ -14,8 +14,16 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Finnik - Tu curaduría financiera en WhatsApp",
     description:
-      "Noticias clave, contexto y aprendizaje financiero directo en WhatsApp.",
+      "Noticias clave, contexto y aprendizaje financiero directo en WhatsApp. Sin apps, sin newsletters. Solo lo que importa.",
     type: "website",
+    siteName: "Finnik",
+    locale: "es_AR",
+  },
+  twitter: {
+    card: "summary",
+    title: "Finnik - Tu curaduría financiera en WhatsApp",
+    description:
+      "Noticias clave, contexto y aprendizaje financiero directo en WhatsApp. Sin apps, sin newsletters. Solo lo que importa.",
   },
 };
 

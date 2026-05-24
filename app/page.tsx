@@ -109,14 +109,20 @@ function Navbar() {
 
         {/* Desktop links */}
         <div className="hidden items-center gap-8 md:flex">
-          {["Producto", "Como funciona", "Planes", "FAQ", "Quienes Somos"].map((link) => (
+          {[
+            { label: "Producto", href: "#producto" },
+            { label: "Cómo funciona", href: "#como-funciona" },
+            { label: "Planes", href: "#planes" },
+            { label: "FAQ", href: "#faq" },
+            { label: "Quiénes Somos", href: "#quienes-somos" },
+          ].map(({ label, href }) => (
             <a
-              key={link}
-              href={`#${link.toLowerCase().replace(/ /g, "-")}`}
+              key={href}
+              href={href}
               className="text-sm font-medium transition-colors hover:opacity-70"
               style={{ color: "#070F14" }}
             >
-              {link}
+              {label}
             </a>
           ))}
         </div>
@@ -173,15 +179,21 @@ function Navbar() {
             borderColor: "rgba(221,223,228,0.4)",
           }}
         >
-          {["Producto", "Como funciona", "Planes", "FAQ", "Quienes Somos"].map((link) => (
+          {[
+            { label: "Producto", href: "#producto" },
+            { label: "Cómo funciona", href: "#como-funciona" },
+            { label: "Planes", href: "#planes" },
+            { label: "FAQ", href: "#faq" },
+            { label: "Quiénes Somos", href: "#quienes-somos" },
+          ].map(({ label, href }) => (
             <a
-              key={link}
-              href={`#${link.toLowerCase().replace(/ /g, "-")}`}
+              key={href}
+              href={href}
               onClick={() => setMobileOpen(false)}
               className="block py-2.5 text-sm font-medium"
               style={{ color: "#070F14" }}
             >
-              {link}
+              {label}
             </a>
           ))}
           <a
@@ -242,7 +254,7 @@ function Hero({
             className="text-balance text-3xl font-extrabold leading-[1.1] tracking-tight sm:text-4xl md:text-5xl lg:text-[3.2rem]"
             style={{ color: "#FCFDFD" }}
           >
-            Tu curaduria financiera, directo en WhatsApp.
+            Tu curaduría financiera, directo en WhatsApp.
           </h1>
 
           <p
@@ -344,9 +356,9 @@ function Hero({
 const STEPS = [
   {
     number: "01",
-    title: "Elegis un tema",
+    title: "Elegís un tema",
     description:
-      "Personalizas tu feed: mercado argentino, global, bonos, acciones, cripto. Vos elegis que te interesa.",
+      "Personalizás tu feed: mercado argentino, global, bonos, acciones, cripto. Vos elegís qué te interesa.",
     icon: Sliders,
     visual: "chips",
   },
@@ -362,7 +374,7 @@ const STEPS = [
     number: "03",
     title: "Te llega el brief",
     description:
-      "Cada manana recibis un mensaje claro y directo en WhatsApp. Listo en 2 minutos.",
+      "Cada mañana recibís un mensaje claro y directo en WhatsApp. Listo en 2 minutos.",
     icon: Send,
     visual: "message",
   },
@@ -580,7 +592,7 @@ const FEATURES = [
     icon: TrendingUp,
     title: "AM Brief",
     description:
-      "Cada manana recibis un resumen con las 3 noticias que importan, que paso y que significa para vos.",
+      "Cada mañana recibís un resumen con las 3 noticias que importan, qué pasó y qué significa para vos.",
     action: "am-brief",
   },
   {
@@ -594,7 +606,7 @@ const FEATURES = [
     icon: GraduationCap,
     title: "Explainers",
     description:
-      "Aprende TIR, duration, brecha y mas. Explicaciones claras de 4 a 6 lineas, sin tecnicismos innecesarios.",
+      "Aprendé TIR, duration, brecha y más. Explicaciones claras de 4 a 6 líneas, sin tecnicismos innecesarios.",
     action: "explainer",
   },
 ];
@@ -627,13 +639,13 @@ function FeaturesSection({
             className="mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl"
             style={{ color: "#FCFDFD" }}
           >
-            Asi se ve Finnik
+            Así se ve Finnik
           </h2>
           <p
             className="mt-3 text-pretty text-sm leading-relaxed"
             style={{ color: "#DDDFE4" }}
           >
-            Tres formatos disenados para que entiendas el mercado rapido.
+            Tres formatos diseñados para que entiendas el mercado rápido.
           </p>
         </div>
 
@@ -825,16 +837,16 @@ function PlansSection() {
   const freePlanFeatures = [
     "Resumen corto de 1 noticia por semana",
     "Aviso de upgrade al final del resumen",
-    "5 preguntas libres por dia",
-    '1 "Contame mas" por dia',
-    "Sin alertas intra-dia",
+    "5 preguntas libres por día",
+    '1 "Contame más" por día',
+    "Sin alertas intra-día",
   ];
 
   const proPlanFeatures = [
     "Resumen completo y personalizado con 2 noticias",
-    "50 preguntas libres por dia",
-    '"Contame mas" ilimitado',
-    "Hasta 2 alertas intra-dia segun industria",
+    "50 preguntas libres por día",
+    '"Contame más" ilimitado',
+    "Hasta 2 alertas intra-día según industria",
     "Seguimiento de cartera personal de hasta 15 tickers",
     "Insights nocturnos de cartera",
     "Soporte prioritario",
@@ -855,7 +867,7 @@ function PlansSection() {
             className="mt-4 text-pretty text-base leading-relaxed"
             style={{ color: "#DDDFE4" }}
           >
-            {"Elegi como queres seguir el mercado: gratis para empezar, Pro para personalizar."}
+            {"Elegí cómo querés seguir el mercado: gratis para empezar, Pro para personalizar."}
           </p>
         </div>
 
@@ -906,7 +918,7 @@ function PlansSection() {
               className="mt-4 text-sm leading-relaxed"
               style={{ color: "#ADB0BB" }}
             >
-              {"Proba Finnik sin costo y entende lo importante sin perder tiempo."}
+              {"Probá Finnik sin costo y entendé lo importante sin perder tiempo."}
             </p>
 
             {/* Features */}
@@ -955,7 +967,7 @@ function PlansSection() {
                 color: "#FCFDFD",
               }}
             >
-              Mas completo
+              Más completo
             </span>
 
             {/* Plan name */}
@@ -984,7 +996,7 @@ function PlansSection() {
               className="mt-4 text-sm leading-relaxed"
               style={{ color: "#ADB0BB" }}
             >
-              {"Recibi analisis personalizado, seguimiento de cartera y alertas pensadas para tu perfil."}
+              {"Recibí análisis personalizado, seguimiento de cartera y alertas pensadas para tu perfil."}
             </p>
 
             {/* Features */}
@@ -1172,7 +1184,7 @@ function QuienesSomosSection() {
             className="mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl"
             style={{ color: "#070F14" }}
           >
-            Quienes Somos
+            Quiénes Somos
           </h2>
           <p
             className="mt-3 text-pretty text-base leading-relaxed"
