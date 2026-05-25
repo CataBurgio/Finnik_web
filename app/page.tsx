@@ -22,7 +22,7 @@ import MarqueeSection from "@/components/marquee-section";
 import WhyFinnikSection from "@/components/why-finnik-section";
 import NumbersSection from "@/components/numbers-section";
 
-const ease = [0.21, 0.47, 0.32, 0.98] as const;
+const ease: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
 
 /* ================================================================== */
 /* useScrollProgress hook                                              */

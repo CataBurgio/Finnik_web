@@ -1,9 +1,9 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
 import { useRef } from "react";
 
-const ease = [0.21, 0.47, 0.32, 0.98];
+const ease: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
 
 export function FadeIn({
   children,
@@ -59,7 +59,7 @@ export function FadeInStagger({
   );
 }
 
-export const fadeUpItem = {
+export const fadeUpItem: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease } },
 };
