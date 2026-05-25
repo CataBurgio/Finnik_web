@@ -18,6 +18,9 @@ import PhoneFrame from "@/components/phone-frame";
 import WhatsAppChatDemo from "@/components/whatsapp-chat-demo";
 import NewspaperCollageBackground from "@/components/newspaper-collage-background";
 import { FadeIn, FadeInStagger, fadeUpItem } from "@/components/fade-in";
+import MarqueeSection from "@/components/marquee-section";
+import WhyFinnikSection from "@/components/why-finnik-section";
+import NumbersSection from "@/components/numbers-section";
 
 const ease = [0.21, 0.47, 0.32, 0.98] as const;
 
@@ -1350,6 +1353,9 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero onChatAction={handleChatAction} chatAction={chatAction} />
+      <MarqueeSection />
+      <WhyFinnikSection />
+      <NumbersSection />
       <HowItWorksSection />
       <FeaturesSection onChatAction={handleChatAction} />
       <PlansSection />
