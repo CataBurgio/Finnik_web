@@ -163,7 +163,7 @@ function Navbar() {
         <a
           href="#planes"
           className="hidden rounded-lg px-5 py-2 text-sm font-semibold transition-opacity hover:opacity-90 md:inline-block"
-          style={{ background: "#D07371", color: "#FCFDFD" }}
+          style={{ background: "#25D366", color: "#FCFDFD" }}
         >
           Anotarme
         </a>
@@ -232,7 +232,7 @@ function Navbar() {
             href="#planes"
             onClick={() => setMobileOpen(false)}
             className="mt-2 inline-block rounded-lg px-5 py-2 text-sm font-semibold"
-            style={{ background: "#D07371", color: "#FCFDFD" }}
+            style={{ background: "#25D366", color: "#FCFDFD" }}
           >
             Anotarme
           </a>
@@ -709,7 +709,7 @@ function WaitlistModal({
                 type="submit"
                 disabled={state === "loading"}
                 className="flex-1 rounded-xl py-3 text-sm font-semibold transition-all hover:brightness-110 disabled:opacity-60"
-                style={{ background: "#D07371", color: "#FCFDFD" }}
+                style={{ background: "#25D366", color: "#FCFDFD" }}
               >
                 {state === "loading" ? "Enviando..." : "Anotarme"}
               </button>
@@ -718,6 +718,40 @@ function WaitlistModal({
         )}
       </div>
     </div>
+  );
+}
+
+/* ================================================================== */
+/* SOCIAL PROOF                                                        */
+/* ================================================================== */
+
+const TESTIMONIALS = [
+  { quote: "Arranco el día leyendo el brief con el café. En 1 minuto ya sé qué pasó.", name: "Martín R." },
+  { quote: "Me avisó que GGAL estaba subiendo antes de que lo viera en ningún lado.", name: "Lucía G." },
+  { quote: "Finalmente entiendo qué es la TIR. Y lo entendí en 4 líneas.", name: "Sebastián M." },
+];
+
+function SocialProofSection() {
+  /* TODO: reemplazar con testimonios reales */
+  return (
+    <section className="py-20" style={{ background: "#FCFDFD" }}>
+      <div className="mx-auto max-w-5xl px-5">
+        <FadeIn className="mb-14 text-center">
+          <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#ADB0BB" }}>
+            Probado por economistas, traders y curiosos del mercado argentino
+          </p>
+        </FadeIn>
+        <FadeInStagger stagger={0.12} className="grid gap-10 md:grid-cols-3">
+          {TESTIMONIALS.map((t) => (
+            <motion.div key={t.name} variants={fadeUpItem} className="flex flex-col">
+              <span className="font-display text-5xl leading-none" style={{ color: "rgba(9,56,189,0.12)" }}>&ldquo;</span>
+              <p className="mt-3 text-base leading-relaxed" style={{ color: "#070F14" }}>{t.quote}</p>
+              <p className="mt-5 text-sm font-medium" style={{ color: "#ADB0BB" }}>— {t.name}</p>
+            </motion.div>
+          ))}
+        </FadeInStagger>
+      </div>
+    </section>
   );
 }
 
@@ -732,200 +766,115 @@ function PlansSection() {
 
   const freePlanFeatures = [
     "Resumen corto de 1 noticia por semana",
-    "Aviso de upgrade al final del resumen",
     "5 preguntas libres por día",
     '1 "Contame más" por día',
     "Sin alertas intra-día",
   ];
 
-  const proPlanFeatures = [
-    "Resumen completo y personalizado con 2 noticias",
-    "50 preguntas libres por día",
-    '"Contame más" ilimitado',
-    "Hasta 2 alertas intra-día según industria",
-    "Seguimiento de cartera personal de hasta 15 tickers",
-    "Insights nocturnos de cartera",
-    "Soporte prioritario",
+  const proPlanGroups = [
+    {
+      label: "Contenido",
+      features: [
+        "Resumen completo y personalizado con 2 noticias",
+        "50 preguntas libres por día",
+        '"Contame más" ilimitado',
+      ],
+    },
+    {
+      label: "Cartera",
+      features: [
+        "Seguimiento de hasta 15 tickers",
+        "Hasta 2 alertas intra-día según industria",
+        "Insights nocturnos de cartera",
+      ],
+    },
+    {
+      label: "Soporte",
+      features: ["Soporte prioritario"],
+    },
   ];
 
   return (
     <section id="planes" className="relative py-20 lg:py-28" style={{ background: "#0B2572" }}>
-      <div className="mx-auto max-w-4xl px-5">
-        {/* Header */}
-        <div className="mx-auto max-w-2xl text-center">
-          <h2
-            className="font-display text-balance text-3xl font-normal tracking-normal md:text-4xl"
-            style={{ color: "#FCFDFD" }}
-          >
+      <div className="mx-auto max-w-5xl px-5">
+        <FadeIn className="mx-auto max-w-2xl text-center">
+          <h2 className="font-display text-balance text-3xl font-normal tracking-normal md:text-4xl" style={{ color: "#FCFDFD" }}>
             Planes
           </h2>
-          <p
-            className="mt-4 text-pretty text-base leading-relaxed"
-            style={{ color: "#DDDFE4" }}
-          >
-            {"Elegí cómo querés seguir el mercado: gratis para empezar, Pro para personalizar."}
+          <p className="mt-4 text-base leading-relaxed" style={{ color: "#DDDFE4" }}>
+            Empezá gratis, escalá cuando tenga sentido para vos.
           </p>
-        </div>
+        </FadeIn>
 
-        {/* Plans grid */}
-        <FadeInStagger stagger={0.12} className="mt-14 grid gap-6 md:grid-cols-2">
-          {/* FREE PLAN */}
+        <FadeInStagger stagger={0.12} className="mt-14 flex flex-col gap-6 md:flex-row md:items-start md:gap-8">
+          {/* FREE — subdued, smaller */}
           <motion.div
             variants={fadeUpItem}
-            whileHover={{ y: -5, boxShadow: "0 20px 48px rgba(9,56,189,0.12)" }}
-            transition={{ duration: 0.25 }}
-            className="relative flex flex-col rounded-2xl border p-7 shadow-lg"
-            style={{
-              background: "#FCFDFD",
-              borderColor: "#DDDFE4",
-            }}
+            className="flex flex-col rounded-2xl border p-6 md:w-5/12"
+            style={{ background: "rgba(252,253,253,0.05)", borderColor: "rgba(252,253,253,0.12)" }}
           >
-            {/* Badge */}
-            <span
-              className="absolute -top-3 left-6 rounded-full px-3 py-1 text-xs font-medium"
-              style={{
-                background: "rgba(9,56,189,0.1)",
-                color: "#0938BD",
-              }}
-            >
-              Por defecto
-            </span>
-
-            {/* Plan name */}
-            <h3
-              className="mt-2 text-xl font-bold"
-              style={{ color: "#070F14" }}
-            >
-              Free
-            </h3>
-
-            {/* Price */}
+            <h3 className="text-lg font-semibold" style={{ color: "#FCFDFD" }}>Free</h3>
             <div className="mt-3 flex items-baseline gap-1">
-              <span
-                className="text-4xl font-bold tracking-tight"
-                style={{ color: "#070F14" }}
-              >
-                $0
-              </span>
-              <span className="text-sm font-medium" style={{ color: "#ADB0BB" }}>
-                / mes
-              </span>
+              <span className="text-3xl font-bold" style={{ color: "#FCFDFD" }}>$0</span>
+              <span className="text-sm" style={{ color: "rgba(252,253,253,0.5)" }}> / mes</span>
             </div>
-
-            {/* Description */}
-            <p
-              className="mt-4 text-sm leading-relaxed"
-              style={{ color: "#ADB0BB" }}
-            >
-              {"Probá Finnik sin costo y entendé lo importante sin perder tiempo."}
+            <p className="mt-3 text-sm leading-relaxed" style={{ color: "rgba(252,253,253,0.5)" }}>
+              Probá Finnik sin costo.
             </p>
-
-            {/* Features */}
-            <ul className="mt-6 flex flex-1 flex-col gap-3">
+            <ul className="mt-6 flex flex-1 flex-col gap-2.5">
               {freePlanFeatures.map((feat) => (
-                <li key={feat} className="flex items-start gap-2.5">
-                  <Check
-                    size={16}
-                    className="mt-0.5 flex-shrink-0"
-                    style={{ color: "#0938BD" }}
-                  />
-                  <span className="text-sm leading-relaxed" style={{ color: "#103195" }}>
-                    {feat}
-                  </span>
+                <li key={feat} className="flex items-start gap-2">
+                  <Check size={14} className="mt-0.5 flex-shrink-0" style={{ color: "rgba(252,253,253,0.4)" }} />
+                  <span className="text-sm" style={{ color: "rgba(252,253,253,0.6)" }}>{feat}</span>
                 </li>
               ))}
             </ul>
-
-            {/* CTA */}
             <button
               onClick={() => openModal("Free")}
-              className="mt-8 w-full rounded-xl py-3.5 text-sm font-semibold transition-all hover:opacity-90 active:translate-y-[1px]"
-              style={{
-                background: "transparent",
-                color: "#070F14",
-                border: "1.5px solid #DDDFE4",
-              }}
+              className="mt-7 w-full rounded-xl py-3 text-sm font-semibold transition-all hover:opacity-90"
+              style={{ border: "1.5px solid rgba(252,253,253,0.2)", color: "#FCFDFD" }}
             >
               Empezar gratis
             </button>
           </motion.div>
 
-          {/* PRO PLAN */}
+          {/* PRO — featured, prominent */}
           <motion.div
             variants={fadeUpItem}
-            whileHover={{ y: -5, boxShadow: "0 20px 48px rgba(208,115,113,0.2)" }}
+            whileHover={{ y: -4, boxShadow: "0 24px 56px rgba(37,211,102,0.15)" }}
             transition={{ duration: 0.25 }}
-            className="relative flex flex-col rounded-2xl border-2 p-7 shadow-xl"
-            style={{
-              background: "#FCFDFD",
-              borderColor: "#D07371",
-            }}
+            className="flex flex-col rounded-2xl border-2 p-8 shadow-2xl md:w-7/12"
+            style={{ background: "#FCFDFD", borderColor: "#25D366" }}
           >
-            {/* Badge */}
-            <span
-              className="absolute -top-3 left-6 rounded-full px-3 py-1 text-xs font-semibold"
-              style={{
-                background: "#D07371",
-                color: "#FCFDFD",
-              }}
-            >
-              Más completo
-            </span>
-
-            {/* Plan name */}
-            <h3
-              className="mt-2 text-xl font-bold"
-              style={{ color: "#070F14" }}
-            >
-              Pro
-            </h3>
-
-            {/* Price */}
+            <div className="flex items-center justify-between">
+              <h3 className="text-xl font-bold" style={{ color: "#070F14" }}>Pro</h3>
+            </div>
             <div className="mt-3 flex items-baseline gap-1">
-              <span
-                className="text-4xl font-bold tracking-tight"
-                style={{ color: "#070F14" }}
-              >
-                $3.500
-              </span>
-              <span className="text-sm font-medium" style={{ color: "#ADB0BB" }}>
-                ARS / mes
-              </span>
+              <span className="text-4xl font-bold tracking-tight" style={{ color: "#070F14" }}>$3.500</span>
+              <span className="text-sm font-medium" style={{ color: "#ADB0BB" }}>ARS / mes</span>
+            </div>
+            <p className="mt-1 text-xs" style={{ color: "#ADB0BB" }}>Menos de $120 por día</p>
+
+            <div className="mt-6 flex flex-col gap-5">
+              {proPlanGroups.map((group) => (
+                <div key={group.label}>
+                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider" style={{ color: "#ADB0BB" }}>{group.label}</p>
+                  <ul className="flex flex-col gap-2">
+                    {group.features.map((feat) => (
+                      <li key={feat} className="flex items-start gap-2.5">
+                        <Check size={15} className="mt-0.5 flex-shrink-0" style={{ color: "#25D366" }} />
+                        <span className="text-sm leading-relaxed" style={{ color: "#103195" }}>{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
 
-            {/* Description */}
-            <p
-              className="mt-4 text-sm leading-relaxed"
-              style={{ color: "#ADB0BB" }}
-            >
-              {"Recibí análisis personalizado, seguimiento de cartera y alertas pensadas para tu perfil."}
-            </p>
-
-            {/* Features */}
-            <ul className="mt-6 flex flex-1 flex-col gap-3">
-              {proPlanFeatures.map((feat) => (
-                <li key={feat} className="flex items-start gap-2.5">
-                  <Check
-                    size={16}
-                    className="mt-0.5 flex-shrink-0"
-                    style={{ color: "#D07371" }}
-                  />
-                  <span className="text-sm leading-relaxed" style={{ color: "#103195" }}>
-                    {feat}
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            {/* CTA */}
             <button
               onClick={() => openModal("Pro")}
               className="mt-8 w-full rounded-xl py-3.5 text-sm font-semibold transition-all hover:brightness-110 active:translate-y-[1px]"
-              style={{
-                background: "#D07371",
-                color: "#FCFDFD",
-                boxShadow: "0 4px 12px rgba(208,115,113,0.3)",
-              }}
+              style={{ background: "#25D366", color: "#FCFDFD", boxShadow: "0 4px 16px rgba(37,211,102,0.35)" }}
             >
               Empezar por WhatsApp
             </button>
@@ -976,7 +925,7 @@ const FAQ_DATA = [
 ];
 
 function FAQSection() {
-  const [openIdx, setOpenIdx] = useState<number | null>(null);
+  const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
     <section
@@ -1042,112 +991,80 @@ function FAQSection() {
 const TEAM = [
   {
     name: "Julian Fernandez Sinisgalli",
-    role: "Licenciado en Economia",
+    role: "Licenciado en Economía",
     university: "Universidad Torcuato Di Tella",
+    bio: "3+ años en financial planning y cash management. Armó Finnik porque la info buena no llegaba a gente fuera del rubro.",
     linkedin: "https://www.linkedin.com/in/julianfernandezsinisgalli/",
+    twitter: "#",
+    photo: "/julian.jpg",
   },
   {
     name: "Catalina Burgio Iraola",
-    role: "Licenciada en Administracion de Empresas",
+    role: "Licenciada en Administración de Empresas",
     university: "Universidad Torcuato Di Tella",
+    bio: "Obsesionada con que los productos financieros sean accesibles, y entendibles, para todos.",
     linkedin: "https://www.linkedin.com/in/catalina-burgio-iraola/",
+    twitter: "#",
+    photo: "/catalina.jpg",
   },
 ];
 
 function QuienesSomosSection() {
   return (
-    <section
-      id="quienes-somos"
-      className="relative py-20 lg:py-28"
-      style={{ background: "#F6F7F8" }}
-    >
+    <section id="quienes-somos" className="relative py-20 lg:py-28" style={{ background: "#F6F7F8" }}>
       <div className="mx-auto max-w-4xl px-5">
-        <div className="mx-auto max-w-xl text-center">
-          <span
-            className="inline-block rounded-full px-3 py-1 text-xs font-medium"
-            style={{
-              background: "rgba(9,56,189,0.08)",
-              color: "#0938BD",
-            }}
-          >
-            Equipo
-          </span>
-          <h2
-            className="font-display mt-4 text-balance text-3xl font-normal tracking-normal md:text-4xl"
-            style={{ color: "#070F14" }}
-          >
+        <FadeIn className="mx-auto max-w-xl text-center">
+          <h2 className="font-display text-3xl font-normal tracking-normal md:text-4xl" style={{ color: "#070F14" }}>
             Quiénes Somos
           </h2>
-          <p
-            className="mt-3 text-pretty text-base leading-relaxed"
-            style={{ color: "#ADB0BB" }}
-          >
-            Tus noticias financieras curadas por economistas de verdad.
+          <p className="mt-3 text-base leading-relaxed" style={{ color: "#ADB0BB" }}>
+            Tus noticias curadas por economistas de verdad.
           </p>
-        </div>
+        </FadeIn>
 
         <FadeInStagger stagger={0.15} className="mt-14 grid gap-6 md:grid-cols-2">
           {TEAM.map((member) => (
             <motion.div
               key={member.name}
               variants={fadeUpItem}
-              whileHover={{ y: -5, boxShadow: "0 20px 48px rgba(9,56,189,0.1)" }}
+              whileHover={{ y: -4, boxShadow: "0 20px 48px rgba(9,56,189,0.08)" }}
               transition={{ duration: 0.25 }}
-              className="flex flex-col items-center rounded-2xl border p-8 text-center"
-              style={{
-                background: "#FCFDFD",
-                borderColor: "#DDDFE4",
-                boxShadow: "0 4px 24px rgba(9,56,189,0.06)",
-              }}
+              className="flex flex-col rounded-2xl border p-8"
+              style={{ background: "#FCFDFD", borderColor: "#DDDFE4" }}
             >
-              {/* Avatar placeholder */}
-              <div
-                className="flex h-16 w-16 items-center justify-center rounded-full text-xl font-bold"
-                style={{ background: "rgba(9,56,189,0.08)", color: "#0938BD" }}
-              >
-                {member.name
-                  .split(" ")
-                  .slice(0, 2)
-                  .map((n) => n[0])
-                  .join("")}
-              </div>
-              <h3
-                className="mt-4 text-lg font-semibold"
-                style={{ color: "#070F14" }}
-              >
-                {member.name}
-              </h3>
-              <p
-                className="mt-1 text-sm leading-relaxed"
-                style={{ color: "#103195" }}
-              >
-                {member.role}
-              </p>
-              <p
-                className="text-sm leading-relaxed"
-                style={{ color: "#ADB0BB" }}
-              >
-                {member.university}
-              </p>
-              <a
-                href={member.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-xs font-semibold transition-opacity hover:opacity-80"
-                style={{ background: "rgba(9,56,189,0.08)", color: "#0938BD" }}
-                aria-label={`LinkedIn de ${member.name}`}
-              >
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              {/* TODO: agregar foto real — reemplazar placeholder por <img src={member.photo} ... /> */}
+              <div className="flex h-20 w-20 items-center justify-center rounded-full" style={{ background: "#DDDFE4" }}>
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="8" r="4" stroke="#ADB0BB" strokeWidth="1.5"/>
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#ADB0BB" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
-                LinkedIn
-              </a>
+              </div>
+              <h3 className="mt-5 text-lg font-semibold" style={{ color: "#070F14" }}>{member.name}</h3>
+              <p className="mt-0.5 text-sm" style={{ color: "#0938BD" }}>{member.role}</p>
+              <p className="text-xs" style={{ color: "#ADB0BB" }}>{member.university}</p>
+              <p className="mt-3 text-sm leading-relaxed" style={{ color: "#ADB0BB" }}>{member.bio}</p>
+              <div className="mt-5 flex gap-2">
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-opacity hover:opacity-80"
+                  style={{ background: "rgba(9,56,189,0.08)", color: "#0938BD" }}
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  LinkedIn
+                </a>
+                <a
+                  href={member.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-opacity hover:opacity-80"
+                  style={{ background: "rgba(9,56,189,0.06)", color: "#0938BD" }}
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                  X / Twitter
+                </a>
+              </div>
             </motion.div>
           ))}
         </FadeInStagger>
@@ -1169,17 +1086,17 @@ function PreFooterCTA() {
             className="font-display text-balance text-3xl font-normal tracking-normal md:text-5xl"
             style={{ color: "#FCFDFD", fontSize: "clamp(2rem, 4.5vw, 3.5rem)" }}
           >
-            Empezá a entender el mercado en 2 minutos.
+            Empezá a entender el mercado en 1 minuto.
           </h2>
           <p className="mt-5 text-base leading-relaxed" style={{ color: "rgba(252,253,253,0.7)" }}>
             Sin apps. Sin newsletters. Solo lo que importa, directo en tu WhatsApp.
           </p>
           <motion.a
             href="#planes"
-            whileHover={{ y: -3, boxShadow: "0 16px 40px rgba(208,115,113,0.5)" }}
+            whileHover={{ y: -3, boxShadow: "0 16px 40px rgba(37,211,102,0.4)" }}
             transition={{ duration: 0.2 }}
             className="mt-8 inline-block rounded-xl px-8 py-4 text-base font-bold"
-            style={{ background: "#D07371", color: "#FCFDFD", boxShadow: "0 4px 20px rgba(208,115,113,0.35)" }}
+            style={{ background: "#25D366", color: "#FCFDFD", boxShadow: "0 4px 20px rgba(37,211,102,0.3)" }}
           >
             Anotarme gratis →
           </motion.a>
@@ -1197,9 +1114,9 @@ function Footer() {
   return (
     <footer className="py-14" style={{ background: "#070F14" }}>
       <div className="mx-auto max-w-6xl px-5">
-        <div className="grid gap-10 md:grid-cols-3">
+        <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
           {/* Brand */}
-          <div>
+          <div className="sm:col-span-2 md:col-span-1">
             <div className="flex items-center gap-2">
               <div className="flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold" style={{ background: "#0938BD", color: "#FCFDFD" }}>F</div>
               <span className="text-sm font-semibold tracking-tight" style={{ color: "#FCFDFD" }}>FINNIK</span>
@@ -1207,7 +1124,7 @@ function Footer() {
             <p className="mt-3 text-xs leading-relaxed" style={{ color: "#ADB0BB" }}>
               Curaduría financiera directo en WhatsApp. Para el mercado argentino.
             </p>
-            <p className="mt-4 text-xs" style={{ color: "rgba(173,176,187,0.5)" }}>
+            <p className="mt-4 text-xs" style={{ color: "rgba(173,176,187,0.4)" }}>
               © 2026 Finnik. Todos los derechos reservados.
             </p>
           </div>
@@ -1228,11 +1145,31 @@ function Footer() {
             </div>
           </div>
 
+          {/* Contact & Social */}
+          <div>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(252,253,253,0.3)" }}>Contacto</p>
+            <a href="mailto:finnikfinance@gmail.com" className="text-sm transition-opacity hover:opacity-100" style={{ color: "#ADB0BB" }}>
+              finnikfinance@gmail.com
+            </a>
+            <div className="mt-5 flex gap-3">
+              <a href="https://www.linkedin.com/company/finnik" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-80" aria-label="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#ADB0BB"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-80" aria-label="X / Twitter">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#ADB0BB"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+            </div>
+          </div>
+
           {/* Legal */}
           <div>
             <p className="mb-4 text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(252,253,253,0.3)" }}>Legal</p>
-            <p className="text-xs leading-relaxed" style={{ color: "#ADB0BB" }}>
-              Finnik no brinda asesoramiento financiero. El contenido es informativo. Consultá con un asesor profesional antes de tomar decisiones de inversión.
+            <div className="flex flex-col gap-2.5">
+              <a href="#" className="text-sm transition-opacity hover:opacity-100" style={{ color: "#ADB0BB" }}>Términos y Condiciones</a>
+              <a href="#" className="text-sm transition-opacity hover:opacity-100" style={{ color: "#ADB0BB" }}>Política de Privacidad</a>
+            </div>
+            <p className="mt-5 text-xs leading-relaxed" style={{ color: "rgba(173,176,187,0.5)" }}>
+              Finnik no brinda asesoramiento financiero. El contenido es informativo.
             </p>
           </div>
         </div>
@@ -1266,6 +1203,7 @@ export default function Home() {
       <NumbersSection />
       <HowItWorksSection />
       <FeaturesSection />
+      <SocialProofSection />
       <PlansSection />
       <FAQSection />
       <QuienesSomosSection />
