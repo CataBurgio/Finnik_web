@@ -251,7 +251,7 @@ function Hero({
         {/* === LEFT: Promise (cols 1-5) === */}
         <div className="lg:col-span-5">
           <h1
-            className="text-balance text-3xl font-extrabold leading-[1.1] tracking-tight sm:text-4xl md:text-5xl lg:text-[3.2rem]"
+            className="font-display text-balance text-3xl font-black leading-[1.1] tracking-tight sm:text-4xl md:text-5xl lg:text-[3.2rem]"
             style={{ color: "#FCFDFD" }}
           >
             Tu curaduría financiera, directo en WhatsApp.
@@ -510,7 +510,7 @@ function HowItWorksSection() {
             Como funciona
           </span>
           <h2
-            className="mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl"
+            className="font-display mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl"
             style={{ color: "#070F14" }}
           >
             De las noticias a tu WhatsApp, en 3 pasos
@@ -636,7 +636,7 @@ function FeaturesSection({
             Producto
           </span>
           <h2
-            className="mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl"
+            className="font-display mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl"
             style={{ color: "#FCFDFD" }}
           >
             Así se ve Finnik
@@ -858,7 +858,7 @@ function PlansSection() {
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center">
           <h2
-            className="text-balance text-3xl font-bold tracking-tight md:text-4xl"
+            className="font-display text-balance text-3xl font-bold tracking-tight md:text-4xl"
             style={{ color: "#FCFDFD" }}
           >
             Planes
@@ -1086,7 +1086,7 @@ function FAQSection() {
     >
       <div className="mx-auto max-w-2xl px-5">
         <h2
-          className="text-center text-3xl font-bold tracking-tight md:text-4xl"
+          className="font-display text-center text-3xl font-bold tracking-tight md:text-4xl"
           style={{ color: "#FCFDFD" }}
         >
           Preguntas frecuentes
@@ -1181,7 +1181,7 @@ function QuienesSomosSection() {
             Equipo
           </span>
           <h2
-            className="mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl"
+            className="font-display mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl"
             style={{ color: "#070F14" }}
           >
             Quiénes Somos
