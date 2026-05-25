@@ -13,9 +13,13 @@ import {
   Filter,
   Send,
 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import PhoneFrame from "@/components/phone-frame";
 import WhatsAppChatDemo from "@/components/whatsapp-chat-demo";
 import NewspaperCollageBackground from "@/components/newspaper-collage-background";
+import { FadeIn, FadeInStagger, fadeUpItem } from "@/components/fade-in";
+
+const ease = [0.21, 0.47, 0.32, 0.98] as const;
 
 /* ================================================================== */
 /* useScrollProgress hook                                              */
@@ -252,114 +256,127 @@ function Hero({
         {/* === LEFT: Copy (cols 1-7) === */}
         <div className="pb-16 lg:col-span-7 lg:pb-24 lg:pr-6">
           {/* Editorial tag */}
-          <div className="mb-5 flex items-center gap-2.5">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0, ease }}
+            className="mb-5 flex items-center gap-2.5"
+          >
             <span className="h-px w-8 flex-shrink-0" style={{ background: "#D07371" }} />
-            <span
-              className="text-xs font-semibold uppercase tracking-widest"
-              style={{ color: "#D07371" }}
-            >
+            <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#D07371" }}>
               Curaduría financiera
             </span>
-          </div>
+          </motion.div>
 
-          <h1
+          <motion.h1
+            initial={{ opacity: 0, y: 32 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.1, ease }}
             className="font-display text-balance font-black leading-[1.02] tracking-tight"
-            style={{
-              color: "#FCFDFD",
-              fontSize: "clamp(2.4rem, 5.5vw, 4.8rem)",
-            }}
+            style={{ color: "#FCFDFD", fontSize: "clamp(2.4rem, 5.5vw, 4.8rem)" }}
           >
             Tu curaduría financiera, directo en WhatsApp.
-          </h1>
+          </motion.h1>
 
-          <p
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.25, ease }}
             className="mt-5 max-w-md text-pretty text-base leading-relaxed md:text-lg"
             style={{ color: "#DDDFE4" }}
           >
             Sin apps, ni newsletters interminables. Solo lo que importa, cuando importa.
-          </p>
+          </motion.p>
 
           {/* CTAs */}
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.4, ease }}
+            className="mt-8 flex flex-wrap items-center gap-3"
+          >
             <button
               onClick={() => onChatAction("am-brief")}
-              className="rounded-xl px-7 py-3 text-sm font-semibold transition-all hover:brightness-110 active:translate-y-[1px]"
+              className="rounded-xl px-7 py-3 text-sm font-semibold transition-all hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0"
               style={{
                 background: "#D07371",
                 color: "#FCFDFD",
-                boxShadow:
-                  "0 4px 12px rgba(208,115,113,0.4), 0 2px 4px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.2)",
+                boxShadow: "0 4px 12px rgba(208,115,113,0.4), 0 2px 4px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.2)",
               }}
             >
               Probar demo
             </button>
             <a
               href="#como-funciona"
-              className="rounded-xl border px-7 py-3 text-sm font-semibold transition-all hover:opacity-90 active:translate-y-[1px]"
+              className="rounded-xl border px-7 py-3 text-sm font-semibold transition-all hover:opacity-90 hover:-translate-y-0.5 active:translate-y-0"
               style={{
                 borderColor: "rgba(221,223,228,0.35)",
                 color: "#FCFDFD",
-                boxShadow:
-                  "0 4px 12px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.1)",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.1)",
                 background: "rgba(252,253,253,0.06)",
               }}
             >
               Ver cómo funciona
             </a>
-          </div>
+          </motion.div>
 
           {/* Bullets inline */}
-          <div className="mt-7 flex flex-wrap gap-x-6 gap-y-2">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.55, ease }}
+            className="mt-7 flex flex-wrap gap-x-6 gap-y-2"
+          >
             {HERO_BULLETS.map(({ icon: Icon, text }) => (
               <div key={text} className="flex items-center gap-1.5">
                 <Icon size={13} style={{ color: "#D07371" }} />
-                <span className="text-sm" style={{ color: "rgba(252,253,253,0.55)" }}>
-                  {text}
-                </span>
+                <span className="text-sm" style={{ color: "rgba(252,253,253,0.55)" }}>{text}</span>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* === RIGHT: Phone (cols 8-12) — tilted, bleeds off bottom === */}
         <div className="relative flex items-end justify-center lg:col-span-5 lg:justify-end">
           {/* Floating mini-card — breaks the axis */}
-          <div
+          <motion.div
+            initial={{ opacity: 0, x: -16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.55, ease }}
             className="absolute left-2 top-6 z-10 hidden lg:block"
-            style={{ transform: "rotate(-4deg)" }}
+            style={{ rotate: -4 }}
           >
             <div
               className="flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold shadow-xl"
-              style={{
-                background: "rgba(252,253,253,0.96)",
-                color: "#070F14",
-                backdropFilter: "blur(8px)",
-              }}
+              style={{ background: "rgba(252,253,253,0.96)", color: "#070F14", backdropFilter: "blur(8px)" }}
             >
-              <span
-                className="flex h-5 w-5 items-center justify-center rounded-full text-[10px]"
-                style={{ background: "#0938BD", color: "#fff" }}
-              >
+              <span className="flex h-5 w-5 items-center justify-center rounded-full text-[10px]" style={{ background: "#0938BD", color: "#fff" }}>
                 F
               </span>
               Brief de hoy · 07:30 AM
             </div>
-          </div>
+          </motion.div>
 
-          {/* Phone — rotated 3°, bleeds below section */}
-          <div
-            className="transition-transform duration-300 ease-out"
-            style={{
-              transform: `rotate(3deg) scale(${phoneScale})`,
-              filter: `drop-shadow(${phoneShadow})`,
-              marginBottom: "-48px",
-              willChange: "transform, filter",
-            }}
+          {/* Phone — entrance animation + scroll scale */}
+          <motion.div
+            initial={{ opacity: 0, y: 48 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.3, ease }}
           >
-            <PhoneFrame>
-              <WhatsAppChatDemo initialAction={chatAction} />
-            </PhoneFrame>
-          </div>
+            <div
+              className="transition-[transform,filter] duration-300 ease-out"
+              style={{
+                transform: `rotate(3deg) scale(${phoneScale})`,
+                filter: `drop-shadow(${phoneShadow})`,
+                marginBottom: "-48px",
+                willChange: "transform, filter",
+              }}
+            >
+              <PhoneFrame>
+                <WhatsAppChatDemo initialAction={chatAction} />
+              </PhoneFrame>
+            </div>
+          </motion.div>
         </div>
 
       </div>
