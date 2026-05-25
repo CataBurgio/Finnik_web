@@ -214,11 +214,11 @@ function Navbar() {
 /* HERO BULLETS (right column)                                         */
 /* ================================================================== */
 
-  const HERO_BULLETS = [
+const HERO_BULLETS = [
   { icon: Zap, text: "Brief diario en 1 minuto" },
-  { icon: Brain, text: "Contexto + que significa" },
+  { icon: Brain, text: "Contexto + qué significa" },
   { icon: Sliders, text: "Tu feed, a tu medida" },
-  ];
+];
 
 /* ================================================================== */
 /* HERO (3-column grid with collage bg + squish scroll)                */
@@ -241,24 +241,39 @@ function Hero({
     <section
       ref={heroRef}
       id="producto"
-      className="relative min-h-[90vh] overflow-hidden lg:min-h-[85vh]"
+      className="relative min-h-[90vh] overflow-x-hidden lg:min-h-[85vh]"
     >
       {/* Collage background */}
       <NewspaperCollageBackground scrollProgress={scrollProgress} />
 
       {/* Content */}
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 px-5 pb-16 pt-12 lg:grid-cols-12 lg:gap-6 lg:pb-24 lg:pt-20">
-        {/* === LEFT: Promise (cols 1-5) === */}
-        <div className="lg:col-span-5">
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-end gap-8 px-5 pb-0 pt-12 lg:grid-cols-12 lg:gap-4 lg:pt-20">
+
+        {/* === LEFT: Copy (cols 1-7) === */}
+        <div className="pb-16 lg:col-span-7 lg:pb-24 lg:pr-6">
+          {/* Editorial tag */}
+          <div className="mb-5 flex items-center gap-2.5">
+            <span className="h-px w-8 flex-shrink-0" style={{ background: "#D07371" }} />
+            <span
+              className="text-xs font-semibold uppercase tracking-widest"
+              style={{ color: "#D07371" }}
+            >
+              Curaduría financiera
+            </span>
+          </div>
+
           <h1
-            className="font-display text-balance text-3xl font-black leading-[1.1] tracking-tight sm:text-4xl md:text-5xl lg:text-[3.2rem]"
-            style={{ color: "#FCFDFD" }}
+            className="font-display text-balance font-black leading-[1.02] tracking-tight"
+            style={{
+              color: "#FCFDFD",
+              fontSize: "clamp(2.4rem, 5.5vw, 4.8rem)",
+            }}
           >
             Tu curaduría financiera, directo en WhatsApp.
           </h1>
 
           <p
-            className="mt-4 max-w-md text-pretty text-base leading-relaxed md:text-lg"
+            className="mt-5 max-w-md text-pretty text-base leading-relaxed md:text-lg"
             style={{ color: "#DDDFE4" }}
           >
             Sin apps, ni newsletters interminables. Solo lo que importa, cuando importa.
@@ -289,61 +304,64 @@ function Hero({
                 background: "rgba(252,253,253,0.06)",
               }}
             >
-              Ver como funciona
+              Ver cómo funciona
             </a>
+          </div>
+
+          {/* Bullets inline */}
+          <div className="mt-7 flex flex-wrap gap-x-6 gap-y-2">
+            {HERO_BULLETS.map(({ icon: Icon, text }) => (
+              <div key={text} className="flex items-center gap-1.5">
+                <Icon size={13} style={{ color: "#D07371" }} />
+                <span className="text-sm" style={{ color: "rgba(252,253,253,0.55)" }}>
+                  {text}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* === CENTER: Phone (cols 6-9) === */}
-        <div className="flex items-center justify-center lg:col-span-4">
+        {/* === RIGHT: Phone (cols 8-12) — tilted, bleeds off bottom === */}
+        <div className="relative flex items-end justify-center lg:col-span-5 lg:justify-end">
+          {/* Floating mini-card — breaks the axis */}
+          <div
+            className="absolute left-2 top-6 z-10 hidden lg:block"
+            style={{ transform: "rotate(-4deg)" }}
+          >
+            <div
+              className="flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold shadow-xl"
+              style={{
+                background: "rgba(252,253,253,0.96)",
+                color: "#070F14",
+                backdropFilter: "blur(8px)",
+              }}
+            >
+              <span
+                className="flex h-5 w-5 items-center justify-center rounded-full text-[10px]"
+                style={{ background: "#0938BD", color: "#fff" }}
+              >
+                F
+              </span>
+              Brief de hoy · 07:30 AM
+            </div>
+          </div>
+
+          {/* Phone — rotated 3°, bleeds below section */}
           <div
             className="transition-transform duration-300 ease-out"
             style={{
-              transform: `scale(${phoneScale})`,
+              transform: `rotate(3deg) scale(${phoneScale})`,
               filter: `drop-shadow(${phoneShadow})`,
+              marginBottom: "-48px",
               willChange: "transform, filter",
             }}
           >
             <PhoneFrame>
               <WhatsAppChatDemo initialAction={chatAction} />
             </PhoneFrame>
-            {/* Demo label */}
-            <p
-              className="mt-3 text-center text-xs font-medium tracking-wide"
-              style={{ color: "rgba(252,253,253,0.5)" }}
-            >
-              Demo interactiva
-            </p>
           </div>
         </div>
 
-        {/* === RIGHT: Bullets (cols 10-12) === */}
-        <div className="flex flex-row flex-wrap gap-3 lg:col-span-3 lg:flex-col lg:gap-4">
-          {HERO_BULLETS.map(({ icon: Icon, text }) => (
-            <div
-              key={text}
-              className="flex items-center gap-3 rounded-xl border px-4 py-3"
-              style={{
-                borderColor: "rgba(221,223,228,0.15)",
-                background: "rgba(252,253,253,0.04)",
-                backdropFilter: "blur(8px)",
-              }}
-            >
-              <div
-                className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg"
-                style={{ background: "rgba(252,253,253,0.1)" }}
-              >
-                <Icon size={15} style={{ color: "#FCFDFD" }} />
-              </div>
-              <span
-                className="text-sm leading-snug"
-                style={{ color: "#DDDFE4" }}
-              >
-                {text}
-              </span>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
