@@ -838,9 +838,12 @@ function PlansSection() {
         </div>
 
         {/* Plans grid */}
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
+        <FadeInStagger stagger={0.12} className="mt-14 grid gap-6 md:grid-cols-2">
           {/* FREE PLAN */}
-          <div
+          <motion.div
+            variants={fadeUpItem}
+            whileHover={{ y: -5, boxShadow: "0 20px 48px rgba(9,56,189,0.12)" }}
+            transition={{ duration: 0.25 }}
             className="relative flex flex-col rounded-2xl border p-7 shadow-lg"
             style={{
               background: "#FCFDFD",
@@ -915,10 +918,13 @@ function PlansSection() {
             >
               Empezar gratis
             </button>
-          </div>
+          </motion.div>
 
           {/* PRO PLAN */}
-          <div
+          <motion.div
+            variants={fadeUpItem}
+            whileHover={{ y: -5, boxShadow: "0 20px 48px rgba(208,115,113,0.2)" }}
+            transition={{ duration: 0.25 }}
             className="relative flex flex-col rounded-2xl border-2 p-7 shadow-xl"
             style={{
               background: "#FCFDFD",
@@ -993,8 +999,8 @@ function PlansSection() {
             >
               Empezar por WhatsApp
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </FadeInStagger>
       </div>
 
       {showModal && (
@@ -1150,10 +1156,13 @@ function QuienesSomosSection() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
+        <FadeInStagger stagger={0.15} className="mt-14 grid gap-6 md:grid-cols-2">
           {TEAM.map((member) => (
-            <div
+            <motion.div
               key={member.name}
+              variants={fadeUpItem}
+              whileHover={{ y: -5, boxShadow: "0 20px 48px rgba(9,56,189,0.1)" }}
+              transition={{ duration: 0.25 }}
               className="flex flex-col items-center rounded-2xl border p-8 text-center"
               style={{
                 background: "#FCFDFD",
@@ -1209,9 +1218,42 @@ function QuienesSomosSection() {
                 </svg>
                 LinkedIn
               </a>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </FadeInStagger>
+      </div>
+    </section>
+  );
+}
+
+/* ================================================================== */
+/* PRE-FOOTER CTA                                                      */
+/* ================================================================== */
+
+function PreFooterCTA() {
+  return (
+    <section className="py-24" style={{ background: "#0938BD" }}>
+      <div className="mx-auto max-w-3xl px-5 text-center">
+        <FadeIn>
+          <h2
+            className="font-display text-balance text-3xl font-black tracking-tight md:text-5xl"
+            style={{ color: "#FCFDFD", fontSize: "clamp(2rem, 4.5vw, 3.5rem)" }}
+          >
+            Empezá a entender el mercado en 2 minutos.
+          </h2>
+          <p className="mt-5 text-base leading-relaxed" style={{ color: "rgba(252,253,253,0.7)" }}>
+            Sin apps. Sin newsletters. Solo lo que importa, directo en tu WhatsApp.
+          </p>
+          <motion.a
+            href="#planes"
+            whileHover={{ y: -3, boxShadow: "0 16px 40px rgba(208,115,113,0.5)" }}
+            transition={{ duration: 0.2 }}
+            className="mt-8 inline-block rounded-xl px-8 py-4 text-base font-bold"
+            style={{ background: "#D07371", color: "#FCFDFD", boxShadow: "0 4px 20px rgba(208,115,113,0.35)" }}
+          >
+            Anotarme gratis →
+          </motion.a>
+        </FadeIn>
       </div>
     </section>
   );
@@ -1223,30 +1265,47 @@ function QuienesSomosSection() {
 
 function Footer() {
   return (
-    <footer className="py-10" style={{ background: "#0B2572" }}>
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-5 md:flex-row md:justify-between">
-        <div className="flex items-center gap-2">
-          <div
-            className="flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold"
-            style={{ background: "#0938BD", color: "#FCFDFD" }}
-          >
-            F
+    <footer className="py-14" style={{ background: "#070F14" }}>
+      <div className="mx-auto max-w-6xl px-5">
+        <div className="grid gap-10 md:grid-cols-3">
+          {/* Brand */}
+          <div>
+            <div className="flex items-center gap-2">
+              <div className="flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold" style={{ background: "#0938BD", color: "#FCFDFD" }}>F</div>
+              <span className="text-sm font-semibold tracking-tight" style={{ color: "#FCFDFD" }}>FINNIK</span>
+            </div>
+            <p className="mt-3 text-xs leading-relaxed" style={{ color: "#ADB0BB" }}>
+              Curaduría financiera directo en WhatsApp. Para el mercado argentino.
+            </p>
+            <p className="mt-4 text-xs" style={{ color: "rgba(173,176,187,0.5)" }}>
+              © 2026 Finnik. Todos los derechos reservados.
+            </p>
           </div>
-          <span
-            className="text-sm font-semibold tracking-tight"
-            style={{ color: "#FCFDFD" }}
-          >
-            FINNIK
-          </span>
+
+          {/* Nav links */}
+          <div>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(252,253,253,0.3)" }}>Navegación</p>
+            <div className="flex flex-col gap-2.5">
+              {[
+                { label: "Producto", href: "#producto" },
+                { label: "Cómo funciona", href: "#como-funciona" },
+                { label: "Planes", href: "#planes" },
+                { label: "FAQ", href: "#faq" },
+                { label: "Quiénes Somos", href: "#quienes-somos" },
+              ].map(({ label, href }) => (
+                <a key={href} href={href} className="text-sm transition-opacity hover:opacity-100" style={{ color: "#ADB0BB" }}>{label}</a>
+              ))}
+            </div>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(252,253,253,0.3)" }}>Legal</p>
+            <p className="text-xs leading-relaxed" style={{ color: "#ADB0BB" }}>
+              Finnik no brinda asesoramiento financiero. El contenido es informativo. Consultá con un asesor profesional antes de tomar decisiones de inversión.
+            </p>
+          </div>
         </div>
-        <p className="text-xs" style={{ color: "#ADB0BB" }}>
-          {
-            "Finnik no brinda asesoramiento financiero. Consulta con un profesional."
-          }
-        </p>
-        <p className="text-xs" style={{ color: "#ADB0BB" }}>
-          {"2026 Finnik. Todos los derechos reservados."}
-        </p>
       </div>
     </footer>
   );
@@ -1279,6 +1338,7 @@ export default function Home() {
       <PlansSection />
       <FAQSection />
       <QuienesSomosSection />
+      <PreFooterCTA />
       <Footer />
     </main>
   );
