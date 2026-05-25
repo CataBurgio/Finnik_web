@@ -456,113 +456,135 @@ function HowItWorksSection() {
 }
 
 /* ================================================================== */
-/* FEATURES SECTION (kept for backwards compat, now linked from steps) */
+/* FEATURES SECTION — WhatsApp message mockups                         */
 /* ================================================================== */
 
-const FEATURES = [
+function WhatsMsgBubble({ content, time = "07:30" }: { content: string; time?: string }) {
+  return (
+    <div className="overflow-hidden rounded-2xl shadow-lg" style={{ background: "#ECE5DD" }}>
+      <div className="flex items-center gap-3 px-4 py-3" style={{ background: "#075E54" }}>
+        <div className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold" style={{ background: "#0938BD", color: "#fff" }}>
+          F
+        </div>
+        <div>
+          <p className="text-xs font-semibold text-white">Finnik</p>
+          <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.7)" }}>en línea</p>
+        </div>
+      </div>
+      <div className="px-4 py-4">
+        <div className="max-w-[95%] rounded-2xl rounded-tl-none bg-white px-4 py-3 shadow-sm">
+          <p className="whitespace-pre-wrap text-xs leading-[1.75]" style={{ color: "#111" }}>{content}</p>
+          <div className="mt-2 flex items-center justify-end gap-1">
+            <span className="text-[9px]" style={{ color: "#999" }}>{time}</span>
+            <svg width="16" height="8" viewBox="0 0 16 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 4L4 7L9 1" stroke="#53BDEB" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M7 4L10 7L15 1" stroke="#53BDEB" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const AM_BRIEF_MSG = `🔵 AM Brief — 25 mayo
+
+1. El Merval cerró +2.3% impulsado por YPF tras confirmarse la extensión del acuerdo con Petronas.
+
+2. El BCRA compró USD 87M en el MULC. Acumula USD 1.200M en mayo.
+
+3. Tesla cayó 4.1% after hours por guidance débil. Impacto en CEDEAR: TSLA.BA -3.8%.
+
+📌 ¿Querés saber más de alguna? Respondé con el número.`;
+
+const RADAR_MSG = `📊 Radar de Cartera — 15:30
+
+Tu cartera se movió hoy:
+
+▲ AL30 +1.2% ($67.000)
+▼ TSLA.BA -2.4% ($28.100)
+
+⚡ Alerta: GGAL superó tu precio objetivo de $5.800.
+
+¿Querés ver el detalle de algún ticker?`;
+
+const EXPLAINER_MSG = `📚 ¿Qué es la TIR?
+
+La Tasa Interna de Retorno es el rendimiento anual que te da un bono si lo mantenés hasta el vencimiento.
+
+Ejemplo: si comprás un AL30 a $67.000 y al vencimiento cobrás $100.000, la TIR te dice cuánto ganás por año en ese camino.
+
+A mayor TIR → más rendimiento, pero también más riesgo.
+
+¿Querés que te explique otro concepto?`;
+
+const PRODUCT_ITEMS = [
   {
     icon: TrendingUp,
     title: "AM Brief",
-    description:
-      "Cada mañana recibís un resumen con las 3 noticias que importan, qué pasó y qué significa para vos.",
-    action: "am-brief",
+    subtitle: "Las 3 noticias del día, en 1 minuto",
+    description: "Cada mañana antes de las 8am recibís un resumen con lo que movió el mercado, por qué pasó y qué significa para tu plata.",
+    message: AM_BRIEF_MSG,
+    time: "07:30",
+    reverse: false,
   },
   {
     icon: Radar,
     title: "Radar de Cartera",
-    description:
-      "Monitorea bonos, acciones y CEDEARs. Te avisa si hay movimientos relevantes.",
-    action: "radar",
+    subtitle: "Tu cartera, monitoreada en tiempo real",
+    description: "Seguimiento de bonos, acciones y CEDEARs. Alertas intra-día cuando hay movimientos relevantes en lo que te importa.",
+    message: RADAR_MSG,
+    time: "15:30",
+    reverse: true,
   },
   {
     icon: GraduationCap,
     title: "Explainers",
-    description:
-      "Aprendé TIR, duration, brecha y más. Explicaciones claras de 4 a 6 líneas, sin tecnicismos innecesarios.",
-    action: "explainer",
+    subtitle: "Conceptos financieros en 4 líneas",
+    description: "TIR, duration, brecha, carry trade — explicados con ejemplos del mercado argentino, sin tecnicismos innecesarios.",
+    message: EXPLAINER_MSG,
+    time: "12:00",
+    reverse: false,
   },
 ];
 
-function FeaturesSection({
-  onChatAction,
-}: {
-  onChatAction: (action: string) => void;
-}) {
-  const [activeTab, setActiveTab] = useState(0);
-
+function FeaturesSection() {
   return (
-    <section className="relative py-20" style={{ background: "linear-gradient(180deg, #0B2572 0%, #103195 50%, #0B2572 100%)" }}>
+    <section className="relative py-20 lg:py-28" style={{ background: "linear-gradient(180deg, #0B2572 0%, #103195 100%)" }}>
       <div className="mx-auto max-w-6xl px-5">
         <FadeIn className="mx-auto max-w-xl text-center">
-          <span className="inline-block rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest" style={{ background: "rgba(252,253,253,0.1)", color: "#FCFDFD" }}>
-            Producto
-          </span>
-          <h2 className="font-display mt-4 text-balance text-3xl font-normal tracking-normal md:text-4xl" style={{ color: "#FCFDFD" }}>
+          <h2 className="font-display text-3xl font-normal tracking-normal md:text-4xl" style={{ color: "#FCFDFD" }}>
             Así se ve Finnik
           </h2>
-          <p className="mt-3 text-pretty text-sm leading-relaxed" style={{ color: "#DDDFE4" }}>
+          <p className="mt-3 text-sm leading-relaxed" style={{ color: "#DDDFE4" }}>
             Tres formatos diseñados para que entiendas el mercado rápido.
           </p>
         </FadeIn>
 
-        {/* Tab buttons */}
-        <FadeIn delay={0.15} className="mt-10 flex justify-center gap-2 flex-wrap">
-          {FEATURES.map((f, idx) => (
-            <button
-              key={f.title}
-              onClick={() => setActiveTab(idx)}
-              className="relative rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors"
-              style={{
-                color: activeTab === idx ? "#070F14" : "rgba(252,253,253,0.6)",
-                background: activeTab === idx ? "#FCFDFD" : "transparent",
-              }}
-            >
-              {activeTab === idx && (
-                <motion.span
-                  layoutId="tab-bg"
-                  className="absolute inset-0 rounded-xl"
-                  style={{ background: "#FCFDFD" }}
-                  transition={{ duration: 0.25, ease }}
-                />
-              )}
-              <span className="relative z-10 flex items-center gap-2">
-                <f.icon size={15} />
-                {f.title}
-              </span>
-            </button>
-          ))}
-        </FadeIn>
-
-        {/* Tab content */}
-        <div className="mt-8 overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.3, ease }}
-              className="mx-auto max-w-2xl rounded-2xl border p-8"
-              style={{ background: "rgba(246,247,248,0.97)", borderColor: "#DDDFE4" }}
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl" style={{ background: "rgba(9,56,189,0.12)" }}>
-                {(() => { const Icon = FEATURES[activeTab].icon; return <Icon size={22} style={{ color: "#0938BD" }} />; })()}
+        <div className="mt-20 flex flex-col gap-24">
+          {PRODUCT_ITEMS.map((item, idx) => (
+            <FadeIn key={item.title} delay={0.1}>
+              <div className={`grid items-center gap-12 md:grid-cols-2${item.reverse ? " [&>*:first-child]:md:order-2" : ""}`}>
+                <div>
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl" style={{ background: "rgba(252,253,253,0.1)" }}>
+                      <item.icon size={20} style={{ color: "#FCFDFD" }} />
+                    </div>
+                    <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(252,253,253,0.5)" }}>{item.title}</span>
+                  </div>
+                  <h3 className="font-display text-2xl font-normal md:text-3xl" style={{ color: "#FCFDFD" }}>
+                    {item.subtitle}
+                  </h3>
+                  <p className="mt-4 text-sm leading-relaxed" style={{ color: "#DDDFE4" }}>
+                    {item.description}
+                  </p>
+                </div>
+                <div className="md:px-4">
+                  <WhatsMsgBubble content={item.message} time={item.time} />
+                </div>
               </div>
-              <h3 className="font-display mt-5 text-2xl font-normal" style={{ color: "#070F14" }}>
-                {FEATURES[activeTab].title}
-              </h3>
-              <p className="mt-3 text-base leading-relaxed" style={{ color: "#103195" }}>
-                {FEATURES[activeTab].description}
-              </p>
-              <button
-                onClick={() => onChatAction(FEATURES[activeTab].action)}
-                className="mt-6 rounded-xl px-6 py-3 text-sm font-semibold transition-all hover:brightness-110 hover:-translate-y-0.5"
-                style={{ background: "#D07371", color: "#FCFDFD", boxShadow: "0 4px 12px rgba(208,115,113,0.3)" }}
-              >
-                Ver en el chat →
-              </button>
-            </motion.div>
-          </AnimatePresence>
+            </FadeIn>
+          ))}
         </div>
       </div>
     </section>
@@ -1243,7 +1265,7 @@ export default function Home() {
       <WhyFinnikSection />
       <NumbersSection />
       <HowItWorksSection />
-      <FeaturesSection onChatAction={handleChatAction} />
+      <FeaturesSection />
       <PlansSection />
       <FAQSection />
       <QuienesSomosSection />
