@@ -506,116 +506,42 @@ function StepVisual({ visual }: { visual: string }) {
 }
 
 function HowItWorksSection() {
-  const [visibleSteps, setVisibleSteps] = useState<Set<number>>(new Set());
-  const stepsRef = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const idx = Number(entry.target.getAttribute("data-step-idx"));
-          if (entry.isIntersecting) {
-            setVisibleSteps((prev) => new Set([...prev, idx]));
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    stepsRef.current.forEach((el) => {
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section
-      id="como-funciona"
-      className="relative py-20 lg:py-28"
-      style={{ background: "#F6F7F8" }}
-    >
+    <section id="como-funciona" className="relative py-20 lg:py-28" style={{ background: "#F6F7F8" }}>
       <div className="mx-auto max-w-6xl px-5">
-        {/* Header */}
-        <div className="mx-auto max-w-xl text-center">
-          <span
-            className="inline-block rounded-full px-3 py-1 text-xs font-medium"
-            style={{
-              background: "rgba(9,56,189,0.08)",
-              color: "#0938BD",
-            }}
-          >
-            Como funciona
+        <FadeIn className="mx-auto max-w-xl text-center">
+          <span className="inline-block rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest" style={{ background: "rgba(9,56,189,0.08)", color: "#0938BD" }}>
+            Cómo funciona
           </span>
-          <h2
-            className="font-display mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl"
-            style={{ color: "#070F14" }}
-          >
+          <h2 className="font-display mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl" style={{ color: "#070F14" }}>
             De las noticias a tu WhatsApp, en 3 pasos
           </h2>
-        </div>
+        </FadeIn>
 
-        {/* Steps */}
-        <div className="mt-16 grid gap-8 md:grid-cols-3">
-          {STEPS.map((step, idx) => (
-            <div
+        <FadeInStagger stagger={0.12} className="mt-16 grid gap-8 md:grid-cols-3">
+          {STEPS.map((step) => (
+            <motion.div
               key={step.number}
-              ref={(el) => {
-                stepsRef.current[idx] = el;
-              }}
-              data-step-idx={idx}
-              className="flex flex-col rounded-2xl border p-6 transition-all duration-500"
-              style={{
-                background: "#FCFDFD",
-                borderColor: visibleSteps.has(idx)
-                  ? "rgba(9,56,189,0.15)"
-                  : "#DDDFE4",
-                opacity: visibleSteps.has(idx) ? 1 : 0,
-                transform: visibleSteps.has(idx)
-                  ? "translateY(0)"
-                  : "translateY(20px)",
-                boxShadow: visibleSteps.has(idx)
-                  ? "0 4px 24px rgba(9,56,189,0.06)"
-                  : "none",
-              }}
+              variants={fadeUpItem}
+              whileHover={{ y: -6, boxShadow: "0 16px 40px rgba(9,56,189,0.1)", borderColor: "rgba(9,56,189,0.2)" }}
+              transition={{ duration: 0.25 }}
+              className="flex flex-col rounded-2xl border p-6"
+              style={{ background: "#FCFDFD", borderColor: "#DDDFE4" }}
             >
-              {/* Number + Icon */}
               <div className="flex items-center gap-3">
-                <span
-                  className="text-2xl font-bold tracking-tight"
-                  style={{ color: "rgba(9,56,189,0.2)" }}
-                >
+                <span className="text-2xl font-bold tracking-tight" style={{ color: "rgba(9,56,189,0.2)" }}>
                   {step.number}
                 </span>
-                <div
-                  className="flex h-10 w-10 items-center justify-center rounded-xl"
-                  style={{ background: "rgba(9,56,189,0.08)" }}
-                >
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl" style={{ background: "rgba(9,56,189,0.08)" }}>
                   <step.icon size={20} style={{ color: "#0938BD" }} />
                 </div>
               </div>
-
-              <h3
-                className="mt-4 text-lg font-semibold"
-                style={{ color: "#070F14" }}
-              >
-                {step.title}
-              </h3>
-
-              <p
-                className="mt-2 flex-1 text-sm leading-relaxed"
-                style={{ color: "#ADB0BB" }}
-              >
-                {step.description}
-              </p>
-
-              {/* Mini visual */}
-              <div className="mt-5">
-                <StepVisual visual={step.visual} />
-              </div>
-            </div>
+              <h3 className="mt-4 text-lg font-semibold" style={{ color: "#070F14" }}>{step.title}</h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed" style={{ color: "#ADB0BB" }}>{step.description}</p>
+              <div className="mt-5"><StepVisual visual={step.visual} /></div>
+            </motion.div>
           ))}
-        </div>
+        </FadeInStagger>
       </div>
     </section>
   );
@@ -654,79 +580,81 @@ function FeaturesSection({
 }: {
   onChatAction: (action: string) => void;
 }) {
+  const [activeTab, setActiveTab] = useState(0);
+
   return (
-    <section
-      className="relative py-20"
-      style={{
-        background:
-          "linear-gradient(180deg, #0B2572 0%, #103195 50%, #0B2572 100%)",
-      }}
-    >
+    <section className="relative py-20" style={{ background: "linear-gradient(180deg, #0B2572 0%, #103195 50%, #0B2572 100%)" }}>
       <div className="mx-auto max-w-6xl px-5">
-        <div className="mx-auto max-w-xl text-center">
-          <span
-            className="inline-block rounded-full px-3 py-1 text-xs font-medium"
-            style={{
-              background: "rgba(252,253,253,0.1)",
-              color: "#FCFDFD",
-            }}
-          >
+        <FadeIn className="mx-auto max-w-xl text-center">
+          <span className="inline-block rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest" style={{ background: "rgba(252,253,253,0.1)", color: "#FCFDFD" }}>
             Producto
           </span>
-          <h2
-            className="font-display mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl"
-            style={{ color: "#FCFDFD" }}
-          >
+          <h2 className="font-display mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl" style={{ color: "#FCFDFD" }}>
             Así se ve Finnik
           </h2>
-          <p
-            className="mt-3 text-pretty text-sm leading-relaxed"
-            style={{ color: "#DDDFE4" }}
-          >
+          <p className="mt-3 text-pretty text-sm leading-relaxed" style={{ color: "#DDDFE4" }}>
             Tres formatos diseñados para que entiendas el mercado rápido.
           </p>
-        </div>
+        </FadeIn>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        {/* Tab buttons */}
+        <FadeIn delay={0.15} className="mt-10 flex justify-center gap-2 flex-wrap">
           {FEATURES.map((f, idx) => (
-            <div
+            <button
               key={f.title}
-              className="group flex flex-col rounded-2xl border p-6 shadow-md backdrop-blur-sm transition-all hover:shadow-lg"
+              onClick={() => setActiveTab(idx)}
+              className="relative rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors"
               style={{
-                background:
-                  idx % 2 === 0
-                    ? "rgba(246,247,248,0.95)"
-                    : "rgba(243,245,250,0.95)",
-                borderColor: "#DDDFE4",
+                color: activeTab === idx ? "#070F14" : "rgba(252,253,253,0.6)",
+                background: activeTab === idx ? "#FCFDFD" : "transparent",
               }}
             >
-              <div
-                className="flex h-10 w-10 items-center justify-center rounded-xl"
-                style={{ background: "rgba(9,56,189,0.12)" }}
-              >
-                <f.icon size={20} style={{ color: "#0938BD" }} />
-              </div>
-              <h3
-                className="mt-4 text-lg font-semibold"
-                style={{ color: "#070F14" }}
-              >
+              {activeTab === idx && (
+                <motion.span
+                  layoutId="tab-bg"
+                  className="absolute inset-0 rounded-xl"
+                  style={{ background: "#FCFDFD" }}
+                  transition={{ duration: 0.25, ease }}
+                />
+              )}
+              <span className="relative z-10 flex items-center gap-2">
+                <f.icon size={15} />
                 {f.title}
+              </span>
+            </button>
+          ))}
+        </FadeIn>
+
+        {/* Tab content */}
+        <div className="mt-8 overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3, ease }}
+              className="mx-auto max-w-2xl rounded-2xl border p-8"
+              style={{ background: "rgba(246,247,248,0.97)", borderColor: "#DDDFE4" }}
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl" style={{ background: "rgba(9,56,189,0.12)" }}>
+                {(() => { const Icon = FEATURES[activeTab].icon; return <Icon size={22} style={{ color: "#0938BD" }} />; })()}
+              </div>
+              <h3 className="font-display mt-5 text-2xl font-bold" style={{ color: "#070F14" }}>
+                {FEATURES[activeTab].title}
               </h3>
-              <p
-                className="mt-2 flex-1 text-sm leading-relaxed"
-                style={{ color: "#103195" }}
-              >
-                {f.description}
+              <p className="mt-3 text-base leading-relaxed" style={{ color: "#103195" }}>
+                {FEATURES[activeTab].description}
               </p>
               <button
-                onClick={() => onChatAction(f.action)}
-                className="mt-5 self-start rounded-lg px-4 py-2 text-xs font-semibold transition-opacity hover:opacity-90"
-                style={{ background: "#D07371", color: "#FCFDFD" }}
+                onClick={() => onChatAction(FEATURES[activeTab].action)}
+                className="mt-6 rounded-xl px-6 py-3 text-sm font-semibold transition-all hover:brightness-110 hover:-translate-y-0.5"
+                style={{ background: "#D07371", color: "#FCFDFD", boxShadow: "0 4px 12px rgba(208,115,113,0.3)" }}
               >
-                Ver en el chat
+                Ver en el chat →
               </button>
-            </div>
-          ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>
@@ -1130,52 +1058,42 @@ function FAQSection() {
           Preguntas frecuentes
         </h2>
 
-        <div className="mt-10 flex flex-col gap-3">
+        <FadeInStagger stagger={0.07} className="mt-10 flex flex-col gap-3">
           {FAQ_DATA.map((item, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="rounded-xl border shadow-sm backdrop-blur-sm"
-              style={{
-                background:
-                  idx % 2 === 0
-                    ? "rgba(246,247,248,0.95)"
-                    : "rgba(243,245,250,0.95)",
-                borderColor: "#DDDFE4",
-              }}
+              variants={fadeUpItem}
+              className="overflow-hidden rounded-xl border shadow-sm backdrop-blur-sm"
+              style={{ background: idx % 2 === 0 ? "rgba(246,247,248,0.95)" : "rgba(243,245,250,0.95)", borderColor: "#DDDFE4" }}
             >
               <button
                 onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
-                className="flex w-full items-center justify-between px-5 py-4 text-left"
+                className="flex w-full items-center justify-between px-5 py-4 text-left transition-colors hover:bg-white/50"
               >
-                <span
-                  className="text-sm font-medium"
-                  style={{ color: "#070F14" }}
-                >
-                  {item.q}
-                </span>
-                <ChevronDown
-                  size={18}
-                  className="flex-shrink-0 transition-transform"
-                  style={{
-                    color: "#103195",
-                    transform:
-                      openIdx === idx ? "rotate(180deg)" : "rotate(0deg)",
-                  }}
-                />
+                <span className="text-sm font-medium" style={{ color: "#070F14" }}>{item.q}</span>
+                <motion.div animate={{ rotate: openIdx === idx ? 180 : 0 }} transition={{ duration: 0.25 }}>
+                  <ChevronDown size={18} style={{ color: "#103195" }} />
+                </motion.div>
               </button>
-              {openIdx === idx && (
-                <div className="px-5 pb-4">
-                  <p
-                    className="text-sm leading-relaxed"
-                    style={{ color: "#103195" }}
+              <AnimatePresence initial={false}>
+                {openIdx === idx && (
+                  <motion.div
+                    key="answer"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.28, ease }}
+                    style={{ overflow: "hidden" }}
                   >
-                    {item.a}
-                  </p>
-                </div>
-              )}
-            </div>
+                    <p className="px-5 pb-4 text-sm leading-relaxed" style={{ color: "#103195" }}>
+                      {item.a}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           ))}
-        </div>
+        </FadeInStagger>
       </div>
     </section>
   );
