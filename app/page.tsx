@@ -58,6 +58,29 @@ function useScrollProgress(threshold = 0.4) {
 /* NAVBAR (figma-like: sticky blur, clean)                            */
 /* ================================================================== */
 
+function ScrollProgressBar() {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    function onScroll() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(docHeight > 0 ? scrollTop / docHeight : 0);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <div className="fixed top-0 left-0 right-0 z-[60] h-0.5" style={{ background: "rgba(0,0,0,0)" }}>
+      <motion.div
+        className="h-full origin-left"
+        style={{ background: "#D07371", scaleX: progress, transformOrigin: "0%" }}
+      />
+    </div>
+  );
+}
+
 function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -126,10 +149,14 @@ function Navbar() {
             <a
               key={href}
               href={href}
-              className="text-sm font-medium transition-colors hover:opacity-70"
+              className="group relative text-sm font-medium"
               style={{ color: "#070F14" }}
             >
               {label}
+              <span
+                className="absolute -bottom-0.5 left-0 h-px w-0 transition-all duration-300 group-hover:w-full"
+                style={{ background: "#D07371" }}
+              />
             </a>
           ))}
         </div>
@@ -1328,6 +1355,7 @@ export default function Home() {
 
   return (
     <main>
+      <ScrollProgressBar />
       <Navbar />
       <Hero onChatAction={handleChatAction} chatAction={chatAction} />
       <MarqueeSection />
