@@ -10,7 +10,7 @@ const inter = Inter({
 const garamond = EB_Garamond({
   subsets: ["latin"],
   variable: "--font-playfair",
-  weight: ["500", "600", "700", "800"],
+  weight: ["400", "500"],
   style: ["normal", "italic"],
 });
 

@@ -302,8 +302,8 @@ function Hero({
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.1, ease }}
-            className="font-display text-balance font-black leading-[1.02] tracking-tight"
-            style={{ color: "#FCFDFD", fontSize: "clamp(2.4rem, 5.5vw, 4.8rem)" }}
+            className="font-display text-balance font-normal leading-[1.05] tracking-normal"
+            style={{ color: "#FCFDFD", fontSize: "clamp(2.6rem, 5.8vw, 5.2rem)" }}
           >
             Tu curaduría financiera, directo en WhatsApp.
           </motion.h1>
@@ -540,7 +540,7 @@ function HowItWorksSection() {
           <span className="inline-block rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest" style={{ background: "rgba(9,56,189,0.08)", color: "#0938BD" }}>
             Cómo funciona
           </span>
-          <h2 className="font-display mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl" style={{ color: "#070F14" }}>
+          <h2 className="font-display mt-4 text-balance text-3xl font-normal tracking-normal md:text-4xl" style={{ color: "#070F14" }}>
             De las noticias a tu WhatsApp, en 3 pasos
           </h2>
         </FadeIn>
@@ -616,7 +616,7 @@ function FeaturesSection({
           <span className="inline-block rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest" style={{ background: "rgba(252,253,253,0.1)", color: "#FCFDFD" }}>
             Producto
           </span>
-          <h2 className="font-display mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl" style={{ color: "#FCFDFD" }}>
+          <h2 className="font-display mt-4 text-balance text-3xl font-normal tracking-normal md:text-4xl" style={{ color: "#FCFDFD" }}>
             Así se ve Finnik
           </h2>
           <p className="mt-3 text-pretty text-sm leading-relaxed" style={{ color: "#DDDFE4" }}>
@@ -667,7 +667,7 @@ function FeaturesSection({
               <div className="flex h-12 w-12 items-center justify-center rounded-xl" style={{ background: "rgba(9,56,189,0.12)" }}>
                 {(() => { const Icon = FEATURES[activeTab].icon; return <Icon size={22} style={{ color: "#0938BD" }} />; })()}
               </div>
-              <h3 className="font-display mt-5 text-2xl font-bold" style={{ color: "#070F14" }}>
+              <h3 className="font-display mt-5 text-2xl font-normal" style={{ color: "#070F14" }}>
                 {FEATURES[activeTab].title}
               </h3>
               <p className="mt-3 text-base leading-relaxed" style={{ color: "#103195" }}>
@@ -851,7 +851,7 @@ function PlansSection() {
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center">
           <h2
-            className="font-display text-balance text-3xl font-bold tracking-tight md:text-4xl"
+            className="font-display text-balance text-3xl font-normal tracking-normal md:text-4xl"
             style={{ color: "#FCFDFD" }}
           >
             Planes
@@ -1085,7 +1085,7 @@ function FAQSection() {
     >
       <div className="mx-auto max-w-2xl px-5">
         <h2
-          className="font-display text-center text-3xl font-bold tracking-tight md:text-4xl"
+          className="font-display text-center text-3xl font-normal tracking-normal md:text-4xl"
           style={{ color: "#FCFDFD" }}
         >
           Preguntas frecuentes
@@ -1170,7 +1170,7 @@ function QuienesSomosSection() {
             Equipo
           </span>
           <h2
-            className="font-display mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl"
+            className="font-display mt-4 text-balance text-3xl font-normal tracking-normal md:text-4xl"
             style={{ color: "#070F14" }}
           >
             Quiénes Somos
@@ -1263,7 +1263,7 @@ function PreFooterCTA() {
       <div className="mx-auto max-w-3xl px-5 text-center">
         <FadeIn>
           <h2
-            className="font-display text-balance text-3xl font-black tracking-tight md:text-5xl"
+            className="font-display text-balance text-3xl font-normal tracking-normal md:text-5xl"
             style={{ color: "#FCFDFD", fontSize: "clamp(2rem, 4.5vw, 3.5rem)" }}
           >
             Empezá a entender el mercado en 2 minutos.

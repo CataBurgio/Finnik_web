@@ -52,7 +52,7 @@ export default function NumbersSection() {
           {STATS.map((s) => (
             <div key={s.label} className="text-center">
               <div
-                className="font-display text-4xl font-black tracking-tight md:text-5xl"
+                className="font-display text-4xl font-normal tracking-normal md:text-5xl"
                 style={{ color: "#FCFDFD" }}
               >
                 <Counter target={s.value} suffix={s.suffix} />

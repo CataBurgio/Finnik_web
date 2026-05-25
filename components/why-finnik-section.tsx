@@ -33,7 +33,7 @@ export default function WhyFinnikSection() {
             Por qué Finnik
           </span>
           <h2
-            className="font-display mt-4 text-balance text-3xl font-bold tracking-tight md:text-4xl"
+            className="font-display mt-4 text-balance text-3xl font-normal tracking-normal md:text-4xl"
             style={{ color: "#070F14" }}
           >
             Información financiera sin el drama
@@ -51,7 +51,7 @@ export default function WhyFinnikSection() {
               style={{ background: "#FCFDFD", borderColor: "#DDDFE4" }}
             >
               <span className="text-3xl">{v.emoji}</span>
-              <h3 className="font-display mt-5 text-xl font-bold" style={{ color: "#070F14" }}>
+              <h3 className="font-display mt-5 text-xl font-normal" style={{ color: "#070F14" }}>
                 {v.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed" style={{ color: "#ADB0BB" }}>
