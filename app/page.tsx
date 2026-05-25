@@ -2,8 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import {
-  Zap,
-  Brain,
   Sliders,
   Check,
   ChevronDown,
@@ -245,16 +243,6 @@ function Navbar() {
 }
 
 /* ================================================================== */
-/* HERO BULLETS (right column)                                         */
-/* ================================================================== */
-
-const HERO_BULLETS = [
-  { icon: Zap, text: "Brief diario en 1 minuto" },
-  { icon: Brain, text: "Contexto + qué significa" },
-  { icon: Sliders, text: "Tu feed, a tu medida" },
-];
-
-/* ================================================================== */
 /* HERO (3-column grid with collage bg + squish scroll)                */
 /* ================================================================== */
 
@@ -294,7 +282,7 @@ function Hero({
           >
             <span className="h-px w-8 flex-shrink-0" style={{ background: "#D07371" }} />
             <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#D07371" }}>
-              Curaduría financiera
+              Claridad. Criterio. Foco.
             </span>
           </motion.div>
 
@@ -315,7 +303,7 @@ function Hero({
             className="mt-5 max-w-md text-pretty text-base leading-relaxed md:text-lg"
             style={{ color: "#DDDFE4" }}
           >
-            Sin apps, ni newsletters interminables. Solo lo que importa, cuando importa.
+            Cada mañana, las 3 noticias financieras que más importan. Directo en tu WhatsApp.
           </motion.p>
 
           {/* CTAs */}
@@ -329,9 +317,9 @@ function Hero({
               onClick={() => onChatAction("am-brief")}
               className="rounded-xl px-7 py-3 text-sm font-semibold transition-all hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0"
               style={{
-                background: "#D07371",
+                background: "#25D366",
                 color: "#FCFDFD",
-                boxShadow: "0 4px 12px rgba(208,115,113,0.4), 0 2px 4px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.2)",
+                boxShadow: "0 4px 12px rgba(37,211,102,0.4), 0 2px 4px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.2)",
               }}
             >
               Probar demo
@@ -350,20 +338,6 @@ function Hero({
             </a>
           </motion.div>
 
-          {/* Bullets inline */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.55, ease }}
-            className="mt-7 flex flex-wrap gap-x-6 gap-y-2"
-          >
-            {HERO_BULLETS.map(({ icon: Icon, text }) => (
-              <div key={text} className="flex items-center gap-1.5">
-                <Icon size={13} style={{ color: "#D07371" }} />
-                <span className="text-sm" style={{ color: "rgba(252,253,253,0.55)" }}>{text}</span>
-              </div>
-            ))}
-          </motion.div>
         </div>
 
         {/* === RIGHT: Phone (cols 8-12) — tilted, bleeds off bottom === */}
@@ -420,155 +394,62 @@ function Hero({
 
 const STEPS = [
   {
-    number: "01",
     title: "Elegís un tema",
-    description:
-      "Personalizás tu feed: mercado argentino, global, bonos, acciones, cripto. Vos elegís qué te interesa.",
+    description: "Personalizás tu feed: mercado argentino, global, bonos, acciones, cripto. Vos elegís qué te interesa.",
     icon: Sliders,
-    visual: "chips",
   },
   {
-    number: "02",
     title: "Finnik filtra el ruido",
-    description:
-      "Nuestro motor analiza decenas de fuentes y te deja solo lo relevante, con contexto real.",
+    description: "Nuestro motor analiza decenas de fuentes y te deja solo lo relevante, con contexto real.",
     icon: Filter,
-    visual: "filter",
   },
   {
-    number: "03",
     title: "Te llega el brief",
-    description:
-      "Cada mañana recibís un mensaje claro y directo en WhatsApp. Listo en 2 minutos.",
+    description: "Cada mañana recibís un mensaje claro y directo en WhatsApp. Listo en 1 minuto.",
     icon: Send,
-    visual: "message",
   },
 ];
-
-function StepVisual({ visual }: { visual: string }) {
-  if (visual === "chips") {
-    return (
-      <div className="flex flex-wrap gap-2">
-        {["Bonos", "Acciones", "CEDEARs", "Cripto", "Argentina", "Global"].map(
-          (chip) => (
-            <span
-              key={chip}
-              className="rounded-full px-3 py-1 text-xs font-medium"
-              style={{
-                background: "rgba(9,56,189,0.08)",
-                color: "#0938BD",
-                border: "1px solid rgba(9,56,189,0.15)",
-              }}
-            >
-              {chip}
-            </span>
-          )
-        )}
-      </div>
-    );
-  }
-  if (visual === "filter") {
-    return (
-      <div className="flex flex-col gap-1.5">
-        {[
-          { w: "100%", opacity: 0.15, blur: true },
-          { w: "90%", opacity: 0.1, blur: true },
-          { w: "95%", opacity: 1, blur: false },
-        ].map((line, i) => (
-          <div
-            key={i}
-            className="rounded-md px-3 py-1.5"
-            style={{
-              width: line.w,
-              background: line.blur
-                ? "rgba(9,56,189,0.05)"
-                : "rgba(9,56,189,0.1)",
-              opacity: line.opacity,
-              filter: line.blur ? "blur(2px)" : "none",
-              border: line.blur ? "none" : "1px solid rgba(9,56,189,0.2)",
-            }}
-          >
-            <div
-              className="h-2 rounded"
-              style={{
-                width: i === 2 ? "70%" : "60%",
-                background: line.blur
-                  ? "rgba(173,176,187,0.3)"
-                  : "#0938BD",
-                opacity: line.blur ? 0.5 : 0.6,
-              }}
-            />
-          </div>
-        ))}
-      </div>
-    );
-  }
-  // message
-  return (
-    <div
-      className="flex items-start gap-2 rounded-xl p-3"
-      style={{
-        background: "rgba(9,56,189,0.06)",
-        border: "1px solid rgba(9,56,189,0.12)",
-      }}
-    >
-      <div
-        className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-[10px] font-bold"
-        style={{ background: "#0938BD", color: "#FCFDFD" }}
-      >
-        F
-      </div>
-      <div className="flex flex-col gap-1">
-        <div
-          className="h-2 w-32 rounded"
-          style={{ background: "rgba(9,56,189,0.2)" }}
-        />
-        <div
-          className="h-2 w-24 rounded"
-          style={{ background: "rgba(9,56,189,0.12)" }}
-        />
-      </div>
-    </div>
-  );
-}
 
 function HowItWorksSection() {
   return (
     <section id="como-funciona" className="relative py-20 lg:py-28" style={{ background: "#F6F7F8" }}>
-      <div className="mx-auto max-w-6xl px-5">
-        <FadeIn className="mx-auto max-w-xl text-center">
-          <span className="inline-block rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest" style={{ background: "rgba(9,56,189,0.08)", color: "#0938BD" }}>
-            Cómo funciona
-          </span>
-          <h2 className="font-display mt-4 text-balance text-3xl font-normal tracking-normal md:text-4xl" style={{ color: "#070F14" }}>
+      <div className="mx-auto max-w-3xl px-5">
+        <FadeIn>
+          <h2 className="font-display text-3xl font-normal tracking-normal md:text-4xl" style={{ color: "#070F14" }}>
             De las noticias a tu WhatsApp, en 3 pasos
           </h2>
         </FadeIn>
 
-        <FadeInStagger stagger={0.12} className="mt-16 grid gap-8 md:grid-cols-3">
-          {STEPS.map((step) => (
-            <motion.div
-              key={step.number}
-              variants={fadeUpItem}
-              whileHover={{ y: -6, boxShadow: "0 16px 40px rgba(9,56,189,0.1)", borderColor: "rgba(9,56,189,0.2)" }}
-              transition={{ duration: 0.25 }}
-              className="flex flex-col rounded-2xl border p-6"
-              style={{ background: "#FCFDFD", borderColor: "#DDDFE4" }}
-            >
-              <div className="flex items-center gap-3">
-                <span className="text-2xl font-bold tracking-tight" style={{ color: "rgba(9,56,189,0.2)" }}>
-                  {step.number}
-                </span>
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl" style={{ background: "rgba(9,56,189,0.08)" }}>
-                  <step.icon size={20} style={{ color: "#0938BD" }} />
+        <div className="relative mt-14">
+          {/* Vertical line */}
+          <div className="absolute left-4 top-2 bottom-2 w-px" style={{ background: "rgba(9,56,189,0.15)" }} />
+
+          <div className="flex flex-col gap-12">
+            {STEPS.map((step, idx) => (
+              <FadeIn key={step.title} delay={idx * 0.1}>
+                <div className="relative flex gap-8 pl-14">
+                  {/* Node */}
+                  <div
+                    className="absolute left-0 flex h-8 w-8 items-center justify-center rounded-full border-2"
+                    style={{ background: "#F6F7F8", borderColor: "#0938BD" }}
+                  >
+                    <div className="h-2.5 w-2.5 rounded-full" style={{ background: "#0938BD" }} />
+                  </div>
+
+                  <div>
+                    <div className="mb-2 flex items-center gap-3">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-xl" style={{ background: "rgba(9,56,189,0.08)" }}>
+                        <step.icon size={18} style={{ color: "#0938BD" }} />
+                      </div>
+                      <h3 className="text-lg font-semibold" style={{ color: "#070F14" }}>{step.title}</h3>
+                    </div>
+                    <p className="text-sm leading-relaxed" style={{ color: "#ADB0BB" }}>{step.description}</p>
+                  </div>
                 </div>
-              </div>
-              <h3 className="mt-4 text-lg font-semibold" style={{ color: "#070F14" }}>{step.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed" style={{ color: "#ADB0BB" }}>{step.description}</p>
-              <div className="mt-5"><StepVisual visual={step.visual} /></div>
-            </motion.div>
-          ))}
-        </FadeInStagger>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
